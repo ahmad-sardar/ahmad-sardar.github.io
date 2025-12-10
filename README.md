@@ -1,6 +1,6 @@
 ## Welcome
 
-My publicly shared notes on mathematics and machine learning, built from first principles. The emphasis is deliberately **math-first**: mathematics is studied as a discipline worthy of appreciation in its own right, independent of application. The objective is to engage with theory respectfully and rigorously, while maintaining conceptual clarity and depth.
+Here I publicly share my notes on mathematics and machine learning, built from first principles. The emphasis is deliberately **math-first**: mathematics is studied as a discipline worthy of appreciation in its own right, independent of application. The objective is to engage with theory respectfully and rigorously, while maintaining conceptual clarity and depth.
 
 Machine learning is examined through two complementary theoretical frameworks:
 
@@ -25,4 +25,4 @@ Lean proofs ensure correctness; visualizations provide geometric intuition. The 
 
 ## About Me
 
-Hi, I am Ahmad Sardarç. I am deeply interested in the science underlying Machine Learning, with particular focus on mathematical and theoretical foundations. I currently work as an MLE, contributing end-to-end across experimentation, modeling, and analysis.
+Hi, I am Ahmad Sardar. I am deeply interested in the science underlying Machine Learning, with particular focus on mathematical and theoretical foundations. I currently work as an MLE, contributing end-to-end across experimentation, modeling, and analysis.
