@@ -1,11 +1,13 @@
 project:
   type: website
   output-dir: _site
-  execute:
-    freeze: auto
+
+execute:
+  freeze: auto
 
 website:
   title: "Ahmad Sardar"
+  description: "Mathematics & Machine Learning"
   navbar:
     left:
       - text: "Home"
@@ -24,3 +26,4 @@ format:
     toc: true
     toc-location: left
     number-sections: true
+    embed-resources: true
