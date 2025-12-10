@@ -1,0 +1,19 @@
+---
+title: "Machine Learning"
+subtitle: "Coming Soon"
+author: "Ahmad Sardar"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    code-fold: false
+    theme: darkly
+    css: ../styles.css
+    html-math-method: mathjax
+    embed-resources: true
+---
+
+# Coming Soon

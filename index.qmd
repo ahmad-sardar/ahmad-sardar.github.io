@@ -1,0 +1,14 @@
+---
+title: "Ahmad Sardar"
+subtitle: "Mathematics for Machine Learning"
+---
+
+Welcome to my site. This contains educational content on foundational mathematics and machine learning.
+
+## Mathematics
+
+- [Euclidean Geometry](mathematics/euclidean_geometry_1.qmd) - Foundations for ML
+
+## Machine Learning
+
+- [ML Algorithms](machine_learning/algorithms.qmd) - Fundamental algorithms with mathematical foundations

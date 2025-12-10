@@ -1,0 +1,40 @@
+/* Custom styles for Quarto site */
+
+/* Better math rendering */
+.math {
+  font-family: 'Computer Modern', 'Times New Roman', serif;
+}
+
+/* Code blocks */
+code {
+  background-color: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.95em;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Callout boxes */
+.callout {
+  margin: 1.5rem 0;
+}
+
+/* Improve readability for lists */
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Better spacing for sections */
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}

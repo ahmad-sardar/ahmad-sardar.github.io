@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Ahmad Sardar"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Mathematics"
+        menu:
+          - text: "Euclidean Geometry"
+            href: mathematics/euclidean_geometry_1.qmd
+      - text: "Machine Learning"
+        href: machine_learning/algorithms.qmd
+
+format:
+  html:
+    theme: darkly
+    css: styles.css
+    toc: true
+    toc-location: left
+    number-sections: true
