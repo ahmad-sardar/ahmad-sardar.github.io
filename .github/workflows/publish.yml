@@ -17,8 +17,14 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Cache apt packages
+        uses: amoeba/github-actions-apt-cache@v1
+
       - name: Install librsvg
-        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin
+        run: sudo apt-get install -y librsvg2-bin
+
+      - name: Install TinyTeX
+        run: wget -qO- https://yihui.org/tinytex/install-unx.sh | sh
 
       - name: Render Quarto project
         run: quarto render
