@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Circle Explorer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .controls {
+            margin: 20px 0;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 5px;
+        }
+        .control-group {
+            margin: 10px 0;
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="range"] {
+            width: 250px;
+            vertical-align: middle;
+        }
+        .value-display {
+            display: inline-block;
+            width: 60px;
+            text-align: right;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        canvas {
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            background: white;
+        }
+        .info-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .info-box {
+            padding: 15px;
+            background: #e8f8f5;
+            border-radius: 5px;
+            border-left: 4px solid #16a085;
+        }
+        .info-box h3 {
+            margin: 0 0 10px 0;
+            color: #16a085;
+            font-size: 16px;
+        }
+        .info-box p {
+            margin: 5px 0;
+            color: #34495e;
+            font-size: 14px;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Interactive Circle Explorer</h2>
+        <p style="text-align: center; color: #7f8c8d;">
+            Explore circle properties by adjusting radius and central angle
+        </p>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="radius">Radius (r):</label>
+                <input type="range" id="radius" min="50" max="150" value="100" step="5">
+                <span class="value-display" id="value-r">100</span> px
+            </div>
+            <div class="control-group">
+                <label for="angle">Central Angle (θ):</label>
+                <input type="range" id="angle" min="0" max="360" value="60" step="15">
+                <span class="value-display" id="value-angle">60</span>°
+            </div>
+        </div>
+        
+        <canvas id="canvas" width="800" height="450"></canvas>
+        
+        <div class="info-panel">
+            <div class="info-box">
+                <h3>Circle Properties</h3>
+                <p><strong>Radius:</strong> <span id="info-radius">100</span> px</p>
+                <p><strong>Diameter:</strong> <span id="info-diameter">200</span> px</p>
+                <p><strong>Circumference:</strong> <span id="info-circumference">628.32</span> px</p>
+                <p><strong>Area:</strong> <span id="info-area">31415.93</span> px²</p>
+                <p class="formula">C = 2πr | A = πr²</p>
+            </div>
+            <div class="info-box">
+                <h3>Arc & Sector Properties</h3>
+                <p><strong>Central Angle:</strong> <span id="info-angle-deg">60</span>° = <span id="info-angle-rad">1.05</span> rad</p>
+                <p><strong>Arc Length:</strong> <span id="info-arc">104.72</span> px</p>
+                <p><strong>Sector Area:</strong> <span id="info-sector">5235.99</span> px²</p>
+                <p class="formula">s = rθ | A = ½r²θ (θ in radians)</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const radiusSlider = document.getElementById('radius');
+        const angleSlider = document.getElementById('angle');
+        const valueRDisplay = document.getElementById('value-r');
+        const valueAngleDisplay = document.getElementById('value-angle');
+        
+        function draw() {
+            const r = parseInt(radiusSlider.value);
+            const angleDeg = parseInt(angleSlider.value);
+            const angleRad = angleDeg * Math.PI / 180;
+            
+            // Update displays
+            valueRDisplay.textContent = r;
+            valueAngleDisplay.textContent = angleDeg;
+            
+            // Calculate properties
+            const diameter = 2 * r;
+            const circumference = 2 * Math.PI * r;
+            const area = Math.PI * r * r;
+            const arcLength = r * angleRad;
+            const sectorArea = 0.5 * r * r * angleRad;
+            
+            // Update info panel
+            document.getElementById('info-radius').textContent = r;
+            document.getElementById('info-diameter').textContent = diameter;
+            document.getElementById('info-circumference').textContent = circumference.toFixed(2);
+            document.getElementById('info-area').textContent = area.toFixed(2);
+            document.getElementById('info-angle-deg').textContent = angleDeg;
+            document.getElementById('info-angle-rad').textContent = angleRad.toFixed(2);
+            document.getElementById('info-arc').textContent = arcLength.toFixed(2);
+            document.getElementById('info-sector').textContent = sectorArea.toFixed(2);
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const centerX = 400;
+            const centerY = 225;
+            
+            // Draw circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, r, 0, 2 * Math.PI);
+            ctx.strokeStyle = '#2c3e50';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Draw sector (if angle > 0)
+            if (angleDeg > 0) {
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, r, -Math.PI / 2, -Math.PI / 2 + angleRad);
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(52, 152, 219, 0.3)';
+                ctx.fill();
+                ctx.strokeStyle = '#2980b9';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            
+            // Draw radii
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(centerX, centerY - r);
+            ctx.strokeStyle = '#e74c3c';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            if (angleDeg > 0) {
+                const endX = centerX + r * Math.sin(angleRad);
+                const endY = centerY - r * Math.cos(angleRad);
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = '#e74c3c';
+                ctx.stroke();
+            }
+            
+            // Draw center point
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = '#2c3e50';
+            ctx.fill();
+            
+            // Draw angle arc
+            if (angleDeg > 0) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 30, -Math.PI / 2, -Math.PI / 2 + angleRad);
+                ctx.strokeStyle = '#8e44ad';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            
+            // Labels
+            ctx.fillStyle = '#2c3e50';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            
+            // Center label
+            ctx.fillText('O', centerX - 15, centerY + 5);
+            
+            // Radius label
+            ctx.fillText(`r = ${r}`, centerX + 15, centerY - r/2);
+            
+            // Angle label
+            if (angleDeg > 0) {
+                ctx.fillText(`θ = ${angleDeg}°`, centerX + 50, centerY - 20);
+            }
+            
+            // Arc label
+            if (angleDeg > 0) {
+                const arcMidX = centerX + (r + 15) * Math.sin(angleRad / 2);
+                const arcMidY = centerY - (r + 15) * Math.cos(angleRad / 2);
+                ctx.fillStyle = '#2980b9';
+                ctx.fillText(`s = ${arcLength.toFixed(1)}`, arcMidX, arcMidY);
+            }
+            
+            // Diameter line (dashed)
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(centerX - r, centerY);
+            ctx.lineTo(centerX + r, centerY);
+            ctx.strokeStyle = '#95a5a6';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            ctx.fillStyle = '#7f8c8d';
+            ctx.font = '12px Arial';
+            ctx.fillText(`d = ${diameter}`, centerX, centerY + 20);
+        }
+        
+        radiusSlider.addEventListener('input', draw);
+        angleSlider.addEventListener('input', draw);
+        
+        // Initial draw
+        draw();
+    </script>
+</body>
+</html>

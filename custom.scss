@@ -1,0 +1,246 @@
+/*-- scss:defaults --*/
+
+// Modern dark theme with gradient accents
+$navbar-bg: #0f1419;
+$navbar-fg: #e5e7eb;
+$primary: #6366f1;
+$secondary: #8b5cf6;
+$accent: #ec4899;
+$border-color: #1e293b;
+
+/*-- scss:rules --*/
+
+// Smooth transitions everywhere
+* {
+  transition: all 0.3s ease;
+}
+
+// Modern navbar with glass-morphism effect
+.navbar {
+  background: rgba(15, 20, 25, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Links with underline animation
+.nav-link {
+  color: #e2e8f0 !important;
+  position: relative;
+  font-weight: 500;
+  font-size: 1rem;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    transition: width 0.3s ease;
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+// Modern heading styles
+h1, h2, h3, h4, h5, h6 {
+  color: #e5e7eb;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+  padding-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+// Modern paragraphs
+p {
+  line-height: 1.8;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+}
+
+a {
+  color: #6366f1;
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+  
+  &:hover {
+    color: #8b5cf6;
+  }
+}
+
+// Code blocks with modern styling
+code {
+  background: rgba(15, 23, 42, 0.8) !important;
+  color: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  font-size: 0.95em;
+}
+
+pre {
+  background: rgba(15, 23, 42, 0.9) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  
+  code {
+    background: transparent;
+    color: #e2e8f0;
+    border: none;
+    padding: 0;
+  }
+}
+
+// Modern callout boxes
+.callout {
+  background: rgba(99, 102, 241, 0.1);
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  backdrop-filter: blur(5px);
+  
+  &.callout-note {
+    border-left-color: #6366f1;
+    background: rgba(99, 102, 241, 0.1);
+  }
+  
+  &.callout-tip {
+    border-left-color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+  }
+  
+  &.callout-warning {
+    border-left-color: #ec4899;
+    background: rgba(236, 72, 153, 0.1);
+  }
+  
+  &.callout-important {
+    border-left-color: #f43f5e;
+    background: rgba(244, 63, 94, 0.1);
+  }
+}
+
+// Modern lists
+ul, ol {
+  line-height: 2;
+  color: #cbd5e1;
+  
+  li {
+    margin-bottom: 0.75rem;
+  }
+}
+
+// Modern table styling
+table {
+  border-collapse: collapse;
+  width: 100%;
+  
+  thead {
+    background: rgba(99, 102, 241, 0.1);
+    border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+  }
+  
+  th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #e2e8f0;
+  }
+  
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    color: #cbd5e1;
+  }
+  
+  tbody tr:hover {
+    background: rgba(99, 102, 241, 0.05);
+  }
+}
+
+// Modern blockquote
+blockquote {
+  border-left: 4px solid #6366f1;
+  padding-left: 1.5rem;
+  color: #a0aec0;
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+
+// TOC styling
+.toc-item {
+  color: #cbd5e1 !important;
+  
+  &:hover {
+    color: #6366f1 !important;
+  }
+}
+
+.toc-item.active {
+  color: #6366f1 !important;
+  font-weight: 600;
+}
+
+// Sidebar styling
+#quarto-sidebar {
+  background: rgba(15, 20, 25, 0.5);
+  border-right: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+// Main content area
+#quarto-content {
+  padding: 2rem;
+}
+
+// Modern footer
+.page-footer {
+  border-top: 1px solid rgba(99, 102, 241, 0.1);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background: rgba(15, 20, 25, 0.5);
+}
+
+// Responsive typography
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}

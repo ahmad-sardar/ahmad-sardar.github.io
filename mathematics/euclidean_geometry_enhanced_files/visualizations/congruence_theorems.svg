@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600">
+  <!-- Title -->
+  <text x="500" y="30" font-size="20" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Triangle Congruence Theorems
+  </text>
+  
+  <!-- SSS -->
+  <g id="sss">
+    <text x="120" y="70" font-size="16" font-weight="bold" fill="#2c3e50">SSS (Side-Side-Side)</text>
+    <polygon points="50,100 150,100 100,30" fill="#3498db" opacity="0.3" stroke="#2980b9" stroke-width="2"/>
+    <text x="100" y="115" font-size="12" fill="#2c3e50">6</text>
+    <text x="170" y="70" font-size="12" fill="#2c3e50">7</text>
+    <text x="30" y="70" font-size="12" fill="#2c3e50">8</text>
+    
+    <text x="160" y="105" font-size="14" fill="#2c3e50">≅</text>
+    
+    <polygon points="200,100 300,100 250,30" fill="#3498db" opacity="0.3" stroke="#2980b9" stroke-width="2"/>
+    <text x="250" y="115" font-size="12" fill="#2c3e50">6</text>
+    <text x="320" y="70" font-size="12" fill="#2c3e50">7</text>
+    <text x="180" y="70" font-size="12" fill="#2c3e50">8</text>
+    
+    <text x="120" y="140" font-size="11" fill="#34495e" text-anchor="middle">
+      All three sides equal → Triangles congruent
+    </text>
+  </g>
+  
+  <!-- SAS -->
+  <g id="sas">
+    <text x="420" y="70" font-size="16" font-weight="bold" fill="#2c3e50">SAS (Side-Angle-Side)</text>
+    <polygon points="350,100 450,100 400,30" fill="#e74c3c" opacity="0.3" stroke="#c0392b" stroke-width="2"/>
+    <text x="400" y="115" font-size="12" fill="#2c3e50">5</text>
+    <text x="330" y="70" font-size="12" fill="#2c3e50">6</text>
+    <!-- Angle arc -->
+    <path d="M 355,100 A 20,20 0 0,1 365,90" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="360" y="95" font-size="10" fill="#2c3e50">60°</text>
+    
+    <text x="460" y="105" font-size="14" fill="#2c3e50">≅</text>
+    
+    <polygon points="500,100 600,100 550,30" fill="#e74c3c" opacity="0.3" stroke="#c0392b" stroke-width="2"/>
+    <text x="550" y="115" font-size="12" fill="#2c3e50">5</text>
+    <text x="480" y="70" font-size="12" fill="#2c3e50">6</text>
+    <path d="M 505,100 A 20,20 0 0,1 515,90" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="510" y="95" font-size="10" fill="#2c3e50">60°</text>
+    
+    <text x="420" y="140" font-size="11" fill="#34495e" text-anchor="middle">
+      Two sides + included angle → Triangles congruent
+    </text>
+  </g>
+  
+  <!-- ASA -->
+  <g id="asa">
+    <text x="770" y="70" font-size="16" font-weight="bold" fill="#2c3e50">ASA (Angle-Side-Angle)</text>
+    <polygon points="700,100 800,100 750,30" fill="#2ecc71" opacity="0.3" stroke="#27ae60" stroke-width="2"/>
+    <text x="750" y="115" font-size="12" fill="#2c3e50">7</text>
+    <!-- Angle arcs -->
+    <path d="M 705,100 A 20,20 0 0,1 715,90" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="710" y="95" font-size="10" fill="#2c3e50">50°</text>
+    <path d="M 795,100 A 20,20 0 0,0 785,90" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="785" y="95" font-size="10" fill="#2c3e50">70°</text>
+    
+    <text x="810" y="105" font-size="14" fill="#2c3e50">≅</text>
+    
+    <polygon points="850,100 950,100 900,30" fill="#2ecc71" opacity="0.3" stroke="#27ae60" stroke-width="2"/>
+    <text x="900" y="115" font-size="12" fill="#2c3e50">7</text>
+    <path d="M 855,100 A 20,20 0 0,1 865,90" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="860" y="95" font-size="10" fill="#2c3e50">50°</text>
+    <path d="M 945,100 A 20,20 0 0,0 935,90" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="935" y="95" font-size="10" fill="#2c3e50">70°</text>
+    
+    <text x="770" y="140" font-size="11" fill="#34495e" text-anchor="middle">
+      Two angles + included side → Triangles congruent
+    </text>
+  </g>
+  
+  <!-- NON-THEOREM: AAA -->
+  <g id="aaa-not">
+    <text x="200" y="250" font-size="16" font-weight="bold" fill="#e74c3c">❌ AAA Does NOT Prove Congruence</text>
+    <polygon points="100,280 200,280 150,200" fill="#95a5a6" opacity="0.3" stroke="#7f8c8d" stroke-width="2"/>
+    <!-- Angle marks -->
+    <path d="M 105,280 A 20,20 0 0,1 115,270" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="110" y="275" font-size="10" fill="#2c3e50">60°</text>
+    <path d="M 195,280 A 20,20 0 0,0 185,270" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="185" y="275" font-size="10" fill="#2c3e50">60°</text>
+    <path d="M 150,210 A 15,15 0 0,0 155,220" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="155" y="215" font-size="10" fill="#2c3e50">60°</text>
+    
+    <text x="220" y="245" font-size="14" fill="#2c3e50">≠</text>
+    
+    <polygon points="270,280 420,280 345,175" fill="#95a5a6" opacity="0.3" stroke="#7f8c8d" stroke-width="2"/>
+    <!-- Same angles, different size -->
+    <path d="M 275,280 A 20,20 0 0,1 285,270" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="280" y="275" font-size="10" fill="#2c3e50">60°</text>
+    <path d="M 415,280 A 20,20 0 0,0 405,270" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="405" y="275" font-size="10" fill="#2c3e50">60°</text>
+    <path d="M 345,185 A 15,15 0 0,0 350,195" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="350" y="190" font-size="10" fill="#2c3e50">60°</text>
+    
+    <text x="250" y="310" font-size="11" fill="#e74c3c" text-anchor="middle">
+      Same angles but different sizes! AAA proves SIMILARITY, not congruence.
+    </text>
+  </g>
+  
+  <!-- NON-THEOREM: SSA -->
+  <g id="ssa-not">
+    <text x="650" y="250" font-size="16" font-weight="bold" fill="#e74c3c">❌ SSA Does NOT Work (Ambiguous Case)</text>
+    <polygon points="550,380 650,380 580,300" fill="#95a5a6" opacity="0.3" stroke="#7f8c8d" stroke-width="2"/>
+    <text x="600" y="395" font-size="12" fill="#2c3e50">6</text>
+    <text x="530" y="340" font-size="12" fill="#2c3e50">5</text>
+    <path d="M 555,380 A 20,20 0 0,1 565,370" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="560" y="375" font-size="10" fill="#2c3e50">30°</text>
+    
+    <text x="660" y="350" font-size="20" fill="#2c3e50">?</text>
+    
+    <polygon points="720,380 820,380 740,320" fill="#95a5a6" opacity="0.3" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="770" y="395" font-size="12" fill="#2c3e50">6</text>
+    <text x="700" y="350" font-size="12" fill="#2c3e50">5</text>
+    <path d="M 725,380 A 20,20 0 0,1 735,370" fill="none" stroke="#2c3e50" stroke-width="1.5"/>
+    <text x="730" y="375" font-size="10" fill="#2c3e50">30°</text>
+    
+    <text x="670" y="420" font-size="11" fill="#e74c3c" text-anchor="middle">
+      Multiple triangles possible! The angle is not "included" between the two sides.
+    </text>
+  </g>
+  
+  <!-- Summary box -->
+  <rect x="50" y="470" width="900" height="100" fill="#ecf0f1" stroke="#34495e" stroke-width="2" rx="10"/>
+  <text x="500" y="500" font-size="14" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Key Insight: Minimum Information for Congruence
+  </text>
+  <text x="500" y="525" font-size="12" text-anchor="middle" fill="#34495e">
+    ✓ SSS, SAS, ASA, AAS all work (angle must be "included" for SAS/ASA)
+  </text>
+  <text x="500" y="545" font-size="12" text-anchor="middle" fill="#34495e">
+    ✗ AAA only proves similarity (same shape, different size) | ✗ SSA is ambiguous (multiple solutions possible)
+  </text>
+</svg>

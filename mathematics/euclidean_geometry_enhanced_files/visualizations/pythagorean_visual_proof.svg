@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <!-- Title -->
+  <text x="400" y="25" font-size="18" font-weight="bold" text-anchor="middle" fill="#ffffff">
+    Visual Proof of Pythagorean Theorem: a² + b² = c²
+  </text>
+  
+  <!-- Right triangle (main) -->
+  <g id="main-triangle">
+    <polygon points="100,300 250,300 250,180" fill="#3498db" opacity="0.3" stroke="#2c3e50" stroke-width="2"/>
+    <text x="175" y="260" font-size="14" font-weight="bold" fill="#ffffff">a = 3</text>
+    <text x="260" y="240" font-size="14" font-weight="bold" fill="#ffffff">b = 4</text>
+    <text x="160" y="240" font-size="14" font-weight="bold" fill="#ffffff">c = 5</text>
+  </g>
+  
+  <!-- Square on side a -->
+  <g id="square-a">
+    <rect x="100" y="300" width="150" height="150" fill="#e74c3c" opacity="0.4" stroke="#c0392b" stroke-width="2"/>
+    <text x="175" y="380" font-size="16" font-weight="bold" fill="#ffffff">a²</text>
+    <text x="165" y="400" font-size="12" fill="#ffffff">= 9</text>
+  </g>
+  
+  <!-- Square on side b -->
+  <g id="square-b">
+    <rect x="250" y="60" width="120" height="120" fill="#2ecc71" opacity="0.4" stroke="#27ae60" stroke-width="2"/>
+    <text x="305" y="120" font-size="16" font-weight="bold" fill="#ffffff">b²</text>
+    <text x="300" y="138" font-size="12" fill="#ffffff">= 16</text>
+  </g>
+  
+  <!-- Square on hypotenuse c -->
+  <g id="square-c">
+    <rect x="480" y="220" width="200" height="200" fill="#9b59b6" opacity="0.4" stroke="#8e44ad" stroke-width="2"/>
+    <text x="575" y="325" font-size="16" font-weight="bold" fill="#ffffff">c²</text>
+    <text x="570" y="345" font-size="12" fill="#ffffff">= 25</text>
+  </g>
+  
+  <!-- Equals sign -->
+  <g id="equals">
+    <line x1="400" y1="305" x2="440" y2="305" stroke="#ffffff" stroke-width="3"/>
+    <line x1="400" y1="325" x2="440" y2="325" stroke="#ffffff" stroke-width="3"/>
+  </g>
+  
+  <!-- Annotation -->
+  <text x="400" y="380" font-size="14" text-anchor="middle" fill="#ffffff">
+    Area of square on hypotenuse = Sum of areas on legs
+  </text>
+</svg>

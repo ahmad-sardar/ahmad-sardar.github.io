@@ -6,8 +6,8 @@ execute:
   freeze: auto
 
 website:
-  title: "Ahmad Sardar"
-  description: "Mathematics & Machine Learning"
+  title: "Axioms to Algorithms"
+  description: "Mathematics and Machine Learning from First Principles"
   navbar:
     left:
       - text: "Home"
@@ -15,15 +15,23 @@ website:
       - text: "Mathematics"
         menu:
           - text: "Euclidean Geometry"
-            href: mathematics/euclidean_geometry_1.qmd
+            href: mathematics/euclidean_geometry_enhanced.qmd
       - text: "Machine Learning"
         href: machine_learning/algorithms.qmd
+    right:
+      - icon: github
+        href: https://github.com/ahmad-sardar
+      - icon: linkedin
+        href: https://linkedin.com/in/asardar
+
 
 format:
   html:
-    theme: darkly
-    css: styles.css
+    theme:
+      - darkly
+      - custom.scss
+    css: /styles.css
     toc: true
     toc-location: left
-    number-sections: true
+    number-sections: false
     embed-resources: true

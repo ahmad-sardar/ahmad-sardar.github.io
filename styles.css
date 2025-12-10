@@ -1,40 +1,325 @@
-/* Custom styles for Quarto site */
+/* Modern custom styles for Quarto site */
 
-/* Better math rendering */
-.math {
-  font-family: 'Computer Modern', 'Times New Roman', serif;
+:root {
+  --primary: #6366f1;
+  --secondary: #8b5cf6;
+  --accent: #ec4899;
+  --text: #d1d5db;
+  --text-bright: #e5e7eb;
+  --bg-dark: #0f1419;
+  --bg-darker: #0a0f15;
+  --border: rgba(99, 102, 241, 0.1);
 }
 
-/* Code blocks */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body defaults */
+body {
+  background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+  color: var(--text-bright);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+}
+
+/* Main content container */
+main {
+  background: rgba(15, 20, 25, 0.6);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Modern math rendering */
+.math {
+  font-family: 'Computer Modern', 'Times New Roman', serif;
+  color: var(--text-bright);
+  padding: 0.25rem 0;
+}
+
+/* Code blocks - enhanced */
 code {
-  background-color: #f5f5f5;
-  padding: 2px 6px;
-  border-radius: 3px;
+  background-color: rgba(15, 23, 42, 0.8);
+  color: #e2e8f0;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
   font-size: 0.95em;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  letter-spacing: 0.2px;
 }
 
 pre code {
   background-color: transparent;
   padding: 0;
+  border: none;
 }
 
-/* Callout boxes */
+pre {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  line-height: 1.5;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 10px;
+  
+  &:hover {
+    background: rgba(99, 102, 241, 0.5);
+  }
+}
+
+/* Callout boxes - modern gradient backgrounds */
 .callout {
-  margin: 1.5rem 0;
+  margin: 1.75rem 0;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid var(--primary);
+  background: rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
 }
 
-/* Improve readability for lists */
+.callout-note {
+  border-left-color: #6366f1;
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.callout-tip {
+  border-left-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.callout-warning {
+  border-left-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.callout-important {
+  border-left-color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* Lists with better spacing */
 li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+ul, ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Better spacing for sections */
 h2 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #e5e7eb;
 }
 
 h3 {
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   margin-bottom: 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #e5e7eb;
+}
+
+h4 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+/* Links with hover effects */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+/* Tables - modern styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+  border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+th {
+  padding: 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+  color: var(--text);
+}
+
+tbody tr:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transition: background 0.3s ease;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 5px solid var(--secondary);
+  padding-left: 1.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #a0aec0;
+  font-style: italic;
+  margin: 2rem 0;
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+/* Images */
+img {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+/* Figures */
+figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+figcaption {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* TOC styling */
+.toc {
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.toc-item {
+  color: var(--text);
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.toc-item:hover {
+  color: var(--primary);
+  padding-left: 0.25rem;
+}
+
+.toc-item.active {
+  color: var(--primary);
+  font-weight: 600;
+  border-left: 3px solid var(--primary);
+  padding-left: 0.75rem;
+}
+
+/* Sidebar */
+#quarto-sidebar {
+  background: rgba(15, 20, 25, 0.6);
+  border-right: 1px solid var(--border);
+  backdrop-filter: blur(5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  
+  h2 {
+    margin-top: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  code {
+    font-size: 0.9em;
+  }
+  
+  table {
+    font-size: 0.95rem;
+  }
+  
+  th, td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: #000;
+  }
+  
+  main {
+    background: white;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  a {
+    color: #000080;
+  }
 }

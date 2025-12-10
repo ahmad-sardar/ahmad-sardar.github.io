@@ -1,15 +1,28 @@
-# Notes
+## Welcome
 
-Personal notes on mathematics and machine learning algorithms. This is a math first approach. Looking at ML from both statistical learning theory and probablistic perspectives.
+My publicly shared notes on mathematics and machine learning, built from first principles. The emphasis is deliberately **math-first**: mathematics is studied as a discipline worthy of appreciation in its own right, independent of application. The objective is to engage with theory respectfully and rigorously, while maintaining conceptual clarity and depth.
+
+Machine learning is examined through two complementary theoretical frameworks:
+
+1. **Statistical Learning Theory**, grounded in the principles developed by Vapnik.
+2. **Probabilistic Modeling**, informed by Murphy’s treatment.
+
+Mathematics and machine learning are developed in parallel: the mathematical sections focus on pure concepts, whereas the machine learning sections integrate those concepts into formal learning frameworks.
 
 ## Mathematics
 
-Mathematical foundations organized by domain. Each concept includes intuition, formal definitions, proofs, and worked examples.
+Mathematical foundations are organized by domain. Each concept is introduced systematically, beginning with motivation and context, followed by intuitive visualizations, precise definitions, key properties, and principal theorems. Computational methods accompany the theory, with worked examples spanning basic cases through edge scenarios and explicit discussions of common pitfalls.
 
-## Machine Learning Algorithms  
+Topics reference their prerequisites and the ideas they enable, forming a coherent learning trajectory. Lean is used for formal verification, while geometric visualizations support intuition and complement the underlying rigor.
 
-Notes on machine learning algorithms from first principles. Each algorithm is approached through historical context, intuition, concrete examples, formal treatment, and maybe some current research directions.
+Not all topics may relate to ML. As mentioned earlier we treat maths as its own discipline, independent of application.
 
----
+## Machine Learning Algorithms
 
-Built with [Quarto](https://quarto.org/)
+These notes present machine learning algorithms from first principles. Each algorithm is developed in five layers: historical context and motivation, an intuitive explanation without notation, concrete algebraic computation using actual numbers, a formal mathematical treatment with proofs, and cross-perspective connections. The primary focus is understanding why algorithms work, rather than only how to use them.
+
+Lean proofs ensure correctness; visualizations provide geometric intuition. The notes also address model validation, uncertainty estimation, calibration, and interpretation of metrics.
+
+## About Me
+
+Hi, I am Ahmad Sardarç. I am deeply interested in the science underlying Machine Learning, with particular focus on mathematical and theoretical foundations. I currently work as an MLE, contributing end-to-end across experimentation, modeling, and analysis.

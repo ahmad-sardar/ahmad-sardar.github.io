@@ -1,14 +1,30 @@
----
-title: "Ahmad Sardar"
-subtitle: "Mathematics for Machine Learning"
----
+## Welcome
 
-Welcome to my site. This contains educational content on foundational mathematics and machine learning.
+My publicly shared notes on mathematics and machine learning, built from first principles. The emphasis is deliberately **math-first**: mathematics is studied as a discipline worthy of appreciation in its own right, independent of application. The objective is to engage with theory respectfully and rigorously, while maintaining conceptual clarity and depth.
+
+Machine learning is examined through two complementary theoretical frameworks:
+
+1. **Statistical Learning Theory**, grounded in the principles developed by Vapnik.
+2. **Probabilistic Modeling**, informed by Murphy’s treatment.
+
+Mathematics and machine learning are developed in parallel: the mathematical sections focus on pure concepts, whereas the machine learning sections integrate those concepts into formal learning frameworks.
 
 ## Mathematics
 
-- [Euclidean Geometry](mathematics/euclidean_geometry_1.qmd) - Foundations for ML
+Mathematical foundations are organized by domain. Each concept is introduced systematically, beginning with motivation and context, followed by intuitive visualizations, precise definitions, key properties, and principal theorems. Computational methods accompany the theory, with worked examples spanning basic cases through edge scenarios and explicit discussions of common pitfalls.
 
-## Machine Learning
+Topics reference their prerequisites and the ideas they enable, forming a coherent learning trajectory. Lean is used for formal verification, while geometric visualizations support intuition and complement the underlying rigor.
 
-- [ML Algorithms](machine_learning/algorithms.qmd) - Fundamental algorithms with mathematical foundations
+Not all topics may relate to ML. As mentioned earlier we treat maths as its own discipline, independent of application.
+
+## Machine Learning Algorithms
+
+These notes present machine learning algorithms from first principles. Each algorithm is developed in five layers: historical context and motivation, an intuitive explanation without notation, concrete algebraic computation using actual numbers, a formal mathematical treatment with proofs, and cross-perspective connections. The primary focus is understanding why algorithms work, rather than only how to use them.
+
+Lean proofs ensure correctness; visualizations provide geometric intuition. The notes also address model validation, uncertainty estimation, calibration, and interpretation of metrics.
+
+## About Me
+
+![](assets/profile.png){width=180px fig-align="center" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);"}
+
+Hi, I am Ahmad Sardarç. I am deeply interested in the science underlying Machine Learning, with particular focus on mathematical and theoretical foundations. I currently work as an MLE, contributing end-to-end across experimentation, modeling, and analysis.

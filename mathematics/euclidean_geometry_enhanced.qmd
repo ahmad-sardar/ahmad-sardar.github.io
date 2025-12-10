@@ -1,0 +1,1467 @@
+---
+title: "Euclidean Geometry"
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    number-sections: true
+    code-fold: show
+    code-tools: true
+    theme: cosmo
+    html-math-method: mathjax
+    embed-resources: false
+    fig-cap-location: bottom
+    tbl-cap-location: top
+  pdf:
+    documentclass: article
+    geometry:
+      - margin=1in
+    include-in-header:
+      text: |
+        \usepackage{amsmath}
+        \usepackage{amsthm}
+        \usepackage{tikz}
+---
+
+::: {.callout-note icon=false}
+## Navigation
+
+**Prerequisites:** None (foundational)  
+**Enables:** Trigonometry, Coordinate Geometry, Linear Algebra, Calculus  
+:::
+
+# Introduction {.unnumbered}
+
+Euclidean geometry forms the spatial reasoning foundation essential for machine learning. From understanding projections in high-dimensional spaces to grasping optimization landscapes, these concepts are fundamental prerequisites.
+
+::: {.callout-important}
+## Why This Matters for Machine Learning
+
+- **Vector Spaces**: Geometric objects with distance and angles
+- **Optimization**: Gradient descent as geometric motion
+- **Dimensionality Reduction**: Projections preserve geometric structure
+- **Kernel Methods**: Distance-based similarity in feature space
+- **Neural Networks**: Each layer performs geometric transformation
+:::
+
+---
+
+# Axioms and Postulates {#sec-axioms}
+
+> *"The laws of nature are but the mathematical thoughts of God."* — Euclid
+
+## Motivation & Context
+
+### Historical Setting
+
+In 3rd century BCE Alexandria, Euclid faced a challenge: how to organize all known geometry into a logical system? Rather than present thousands of disconnected facts, he identified a minimal set of **self-evident truths** from which everything else could be derived.
+
+This revolutionary approach:
+- Established the axiomatic method still used in mathematics
+- Influenced formal logic and computer science
+- Demonstrated that complex knowledge can be built from simple foundations
+
+### The Problem
+
+Without axioms, we face **infinite regress**:
+- To prove theorem A, we need theorem B
+- To prove theorem B, we need theorem C
+- To prove theorem C, we need theorem D...
+- *Where does it end?*
+
+Euclid's solution: Start with statements so obvious they need no proof.
+
+### Modern Relevance
+
+**In ML/CS:**
+- Programming languages have axioms (basic operations)
+- Formal verification systems use axiomatic foundations
+- Type theory builds on logical axioms
+- Probabilistic reasoning starts with probability axioms
+
+**Key Insight:** Complex systems require foundational assumptions. The art is choosing the **minimal sufficient set**.
+
+## Intuitive Picture
+
+Think of axioms as the "rules of the game" for geometry:
+
+**Point** → GPS coordinate (location, no size)  
+**Line** → Stretched string (shortest path)  
+**Plane** → Infinite tabletop (flat surface)  
+**Distance** → Measuring tape result
+
+**Mental Model:** You have an infinite blank canvas and two tools:
+1. **Unmarked straightedge** (draw lines)
+2. **Compass** (draw circles)
+
+The axioms tell you:
+- What operations are allowed
+- What properties are guaranteed
+- What you can assume without proof
+
+::: {.callout-tip}
+## Visualization Exercise
+
+Close your eyes. Imagine two dots floating in space. Now imagine the shortest path between them. That path is unique—this is Postulate 1's intuitive content.
+:::
+
+## Precise Definitions
+
+### Undefined Terms
+
+Three concepts are **primitive** (undefined, but understood intuitively):
+
+**Point:** An object with no dimensions (position only)  
+**Line:** A one-dimensional object extending infinitely in both directions  
+**Plane:** A two-dimensional flat surface extending infinitely
+
+**Why undefined?** To avoid circular definitions. These are our starting vocabulary.
+
+### Euclid's Five Postulates
+
+**Postulate 1** (Uniqueness of Line).  
+*Given any two distinct points $P$ and $Q$, there exists exactly one line $\ell$ passing through both.*
+
+**Postulate 2** (Line Extension).  
+*Any line segment can be extended indefinitely in both directions to form a line.*
+
+**Postulate 3** (Circle Construction).  
+*Given any point $C$ (center) and any positive distance $r$ (radius), there exists a circle with center $C$ and radius $r$.*
+
+**Postulate 4** (Right Angle Congruence).  
+*All right angles are congruent to one another.*
+
+**Postulate 5** (Parallel Postulate).  
+*Given a line $\ell$ and a point $P$ not on $\ell$, there exists exactly one line through $P$ parallel to $\ell$.*
+
+### Common Notions (Axioms of Equality)
+
+**CN1** (Transitivity). If $a = b$ and $b = c$, then $a = c$.
+
+**CN2** (Addition). If $a = b$ and $c = d$, then $a + c = b + d$.
+
+**CN3** (Subtraction). If $a = b$ and $c = d$, then $a - c = b - d$.
+
+**CN4** (Coincidence). Things that coincide are equal.
+
+**CN5** (Whole vs Part). The whole is greater than any proper part.
+
+## Why These Definitions
+
+### Why These Specific Five Postulates?
+
+**Postulates 1-4:** Relatively "obvious"
+- Can verify locally with physical tools
+- Match immediate intuition
+- Universally accepted
+
+**Postulate 5:** Controversial!
+- Cannot verify by direct observation (requires infinite extension)
+- More complex statement
+- Led to 2000 years of attempted proofs
+
+### Why Is Postulate 5 Special?
+
+It's the only postulate that:
+1. **Requires infinity**: Must extend lines infinitely to verify
+2. **Determines curvature**: Characterizes flat (Euclidean) space
+3. **Is independent**: Cannot be derived from Postulates 1-4
+
+**Historical Impact:** Attempts to prove Postulate 5 from 1-4 ultimately led to:
+- Hyperbolic geometry (Lobachevsky, Bolyai)
+- Elliptic geometry (Riemann)
+- General relativity (Einstein)
+
+### Why Axioms of Equality?
+
+These establish **logical consistency**:
+- Enable substitution in proofs
+- Allow algebraic manipulation
+- Provide ordering relations
+
+Without them, we couldn't reason about relationships between measurements.
+
+## Key Properties
+
+From these axioms, immediate consequences follow:
+
+**Property 1** (Uniqueness). Given specific conditions, geometric objects are uniquely determined:
+- Two points → one line
+- Center + radius → one circle
+- Line + external point → one parallel
+
+**Property 2** (Existence). Geometric objects can always be constructed:
+- Lines can be drawn and extended
+- Circles always exist for any radius
+- Intersections occur (when not parallel)
+
+**Property 3** (Consistency). No contradictions arise:
+- Equality is transitive and symmetric
+- Measurements can be compared
+- Whole > Part establishes order
+
+## Main Theorems
+
+These axioms enable us to prove *everything else*:
+
+**Theorem 1.1** (Vertical Angles).  
+*When two lines intersect, vertical angles are congruent.*
+
+**Theorem 1.2** (Triangle Angle Sum).  
+*The sum of interior angles in any triangle equals 180°.*
+
+**Theorem 1.3** (SSS Congruence).  
+*Triangles with three pairs of congruent sides are congruent.*
+
+**Theorem 1.4** (Pythagorean Theorem).  
+*In a right triangle: $a^2 + b^2 = c^2$.*
+
+**Theorem 1.5** (Parallel Line Properties).  
+*When a transversal crosses parallel lines, corresponding angles are congruent.*
+
+*All of these follow logically from the five postulates!*
+
+## Computational Methods
+
+### How to Use Axioms in Proofs
+
+**Standard Proof Structure:**
+
+```
+Given: [What we know]
+Prove: [What we want to show]
+Proof:
+  1. [Statement]     [Reason: Given/Axiom/Previous theorem]
+  2. [Statement]     [Reason: ...]
+  ...
+  n. [Conclusion]    [Reason: ...]  ∎
+```
+
+**Example:** Prove base angles of isosceles triangle are equal.
+
+```
+Given: △ABC with AB = AC
+Prove: ∠B = ∠C
+
+Proof:
+  1. Draw angle bisector AD from A to BC     [Construction]
+  2. ∠BAD = ∠CAD                             [Definition of angle bisector]
+  3. AB = AC                                  [Given]
+  4. AD = AD                                  [Reflexive property]
+  5. △ABD ≅ △ACD                             [SAS congruence]
+  6. ∠B = ∠C                                  [CPCTC]  ∎
+```
+
+### Verification Algorithm
+
+**To check if a proof is valid:**
+
+```python
+def verify_proof(proof_steps):
+    """
+    Verify each step cites proper justification.
+    
+    Returns: True if valid, False otherwise
+    """
+    known_facts = set(['given_facts', 'axioms', 'postulates'])
+    
+    for step in proof_steps:
+        reason = step.reason
+        if reason in ['Given', 'Axiom', 'Postulate']:
+            known_facts.add(step.statement)
+        elif reason in known_facts:
+            known_facts.add(step.statement)
+        else:
+            return False  # Invalid step
+    
+    return proof_steps[-1].statement == 'desired_conclusion'
+```
+
+## Examples Progression
+
+### Example 1: Simplest Application
+
+**Given:** Points $A$ and $B$
+
+**Question:** How many lines pass through both?
+
+**Solution:** By Postulate 1, exactly **one** line passes through any two distinct points.
+
+**Verification:** Try to draw two different lines through both points—impossible!
+
+---
+
+### Example 2: Standard Application
+
+**Given:** Line $\ell: y = 2x + 1$ and point $P(3, 4)$ not on $\ell$
+
+**Question:** How many lines through $P$ parallel to $\ell$?
+
+**Solution:**  
+By Postulate 5 (Parallel Postulate), exactly **one** line through $P$ is parallel to $\ell$.
+
+**Finding it:** Parallel lines have equal slopes.  
+Slope of $\ell = 2$, so parallel line: $y - 4 = 2(x - 3)$, i.e., $y = 2x - 2$.
+
+**Verification:**  
+- Passes through $P$: $4 = 2(3) - 2 = 4$ ✓
+- Same slope as $\ell$: Both have $m = 2$ ✓
+- Therefore parallel ✓
+
+---
+
+### Example 3: Edge Case
+
+**Given:** Point $P$ **on** line $\ell$
+
+**Question:** How many lines through $P$ parallel to $\ell$?
+
+**Answer:** **Zero!**
+
+**Why:** The parallel postulate requires $P$ **not** be on $\ell$. A line cannot be parallel to itself—by definition, parallel lines don't intersect.
+
+**Common Error:** Thinking "a line is parallel to itself" (incorrect definition).
+
+---
+
+### Example 4: Non-Example (Different Geometry)
+
+**Context:** Geometry on a sphere's surface
+
+**Setup:** Great circles (like equators) act as "lines"
+
+**Observation:** Through a point $P$ not on great circle $\ell$:
+- **Zero** parallel lines exist!
+- All great circles eventually intersect
+
+**Conclusion:** This is **spherical (elliptic) geometry**, not Euclidean. Postulate 5 fails on spheres.
+
+**Significance:** Shows Postulate 5 is truly necessary for Euclidean geometry.
+
+## Common Pitfalls
+
+::: {.callout-warning icon=false}
+## Mistakes to Avoid
+
+**Pitfall 1: Assuming What Needs Proof**  
+❌ *Wrong:* "The angles are equal because the figure looks symmetric"  
+✅ *Right:* "By SAS congruence (using axioms), we prove angles are equal"
+
+**Pitfall 2: Visual "Proof"**  
+❌ *Wrong:* "The lines look parallel in my drawing"  
+✅ *Right:* "The lines have equal slopes, hence by definition are parallel"
+
+**Pitfall 3: Applying Axioms Out of Scope**  
+❌ *Wrong:* Using Euclidean axioms on a sphere  
+✅ *Right:* Recognize different geometries have different axiom sets
+
+**Pitfall 4: Circular Reasoning**  
+❌ *Wrong:* "Sides equal because angles equal, angles equal because sides equal"  
+✅ *Right:* Establish one property from axioms, derive the other
+
+**Pitfall 5: Confusing Axioms with Theorems**  
+❌ *Wrong:* Trying to "prove" an axiom  
+✅ *Right:* Axioms are accepted without proof; theorems are proved from axioms
+:::
+
+## Connections
+
+### Prerequisites
+
+**Domain 0: Foundations**
+- **Logic & Proof**: Understanding of logical inference ($\Rightarrow$, $\Leftrightarrow$, $\forall$, $\exists$)
+- **Set Theory**: Points as elements, lines as sets of points
+
+**Cognitive Prerequisites:**
+- Spatial reasoning ability
+- Abstract thinking
+- Comfort with logical arguments
+
+### This Concept Enables
+
+**Within Domain 2 (Geometry):**
+- All subsequent geometric theorems
+- Coordinate geometry (not yet covered)
+- Trigonometry (not yet covered)
+
+**Other Domains:**
+- **Domain 5 (Linear Algebra)**: Vector spaces as geometric objects
+- **Domain 7 (Real Analysis)**: Metric spaces generalize distance
+- **Domain 9 (Optimization)**: Geometric interpretation of convexity
+
+### Related Concepts
+
+**Non-Euclidean Geometries:**
+- **Hyperbolic**: Multiple parallels through external point (Postulate 5 altered)
+- **Elliptic**: No parallels (e.g., sphere surface)
+- **Taxicab**: Different distance metric
+
+**Formal Systems:**
+- **Hilbert's Axioms**: Modern rigorous reformulation
+- **Birkhoff's Axioms**: Alternative minimal set
+- **Tarski's Axioms**: First-order logic formulation
+
+**ML Connections:**
+- Feature spaces as geometric objects
+- Metric learning modifies "distance" axioms
+- Graph neural networks on non-Euclidean domains
+
+### Lean Formalization
+
+```lean
+-- Axiom 1: Two points determine a unique line
+axiom point_line_incidence (P Q : Point) (h : P ≠ Q) : 
+  ∃! ℓ : Line, P ∈ ℓ ∧ Q ∈ ℓ
+
+-- Axiom 5: Parallel postulate
+axiom parallel_postulate (ℓ : Line) (P : Point) (h : P ∉ ℓ) :
+  ∃! m : Line, P ∈ m ∧ parallel m ℓ
+
+-- Theorem: Vertical angles are equal
+theorem vertical_angles_equal (α β : Angle) 
+  (h : vertical α β) : α = β := by
+  sorry  -- Proof would follow from axioms
+```
+
+---
+
+# Distance and Angle Measurement {#sec-distance}
+
+## Motivation & Context
+
+### Why Precise Measurement Matters
+
+**Ancient Applications:**
+- **Egypt (3000 BCE)**: Re-surveying land after Nile floods
+- **Greece (500 BCE)**: Navigation and astronomy
+- **Construction**: Building pyramids, temples (precise angles crucial)
+
+**Modern Applications:**
+- **Machine Learning**: Distance defines similarity
+- **Physics**: Spacetime geometry
+- **Computer Graphics**: Rendering 3D scenes
+- **Robotics**: Path planning and localization
+
+### The Core Problem
+
+> How do we quantify "how far apart" two objects are?
+
+Intuitive notions break down:
+- "Close" vs "far" is subjective
+- Different paths give different lengths
+- Need mathematical precision
+
+### Historical Breakthrough
+
+**Pythagoras (c. 500 BCE)** discovered the relationship in right triangles that enables distance calculation in coordinates:
+
+$$d^2 = (\Delta x)^2 + (\Delta y)^2$$
+
+This formula underlies *all* distance calculations in ML!
+
+## Intuitive Picture
+
+### Distance
+
+**Physical Analogy:** Measuring tape stretched taut between two points.
+
+**Key Properties:**
+- Always positive (or zero if points coincide)
+- Symmetric: distance from A to B equals B to A
+- Triangle inequality: Direct path is shortest
+
+**Mental Image:**
+```
+    B
+   /|
+  / |
+ /  | vertical
+/   | distance
+-----
+ horiz
+ dist
+A
+```
+
+The **straight-line distance** is the hypotenuse.
+
+### Angle
+
+**Physical Analogy:** Amount of "turning" between two directions.
+
+**Examples:**
+- Clock hands: 12→3 is 90° (quarter turn)
+- Compass: North→East is 90°
+- Steering wheel: Amount of rotation
+
+**Mental Image:** Angle = opening between two rays.
+
+## Precise Definitions
+
+### Distance (Euclidean Metric)
+
+**Definition 2.1** (Distance in $\mathbb{R}^2$).  
+The **distance** between points $A(x_1, y_1)$ and $B(x_2, y_2)$ is:
+
+$$d(A, B) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+
+**Generalization to $\mathbb{R}^n$:**
+
+$$d(\mathbf{x}, \mathbf{y}) = \sqrt{\sum_{i=1}^n (y_i - x_i)^2} = \|\mathbf{y} - \mathbf{x}\|_2$$
+
+**Metric Properties:** For all points $A, B, C$:
+
+1. **Positivity**: $d(A,B) \geq 0$, with equality iff $A = B$
+2. **Symmetry**: $d(A,B) = d(B,A)$
+3. **Triangle Inequality**: $d(A,C) \leq d(A,B) + d(B,C)$
+
+### Angle Measurement
+
+**Definition 2.2** (Angle).  
+An **angle** is formed by two rays sharing a common endpoint (vertex).
+
+**Units:**
+- **Degrees**: Full circle = 360°
+- **Radians**: Full circle = $2\pi$ rad
+- **Gradians**: Full circle = 400 grad (rarely used)
+
+**Conversion:**
+$$\theta_{\text{rad}} = \theta_{\text{deg}} \times \frac{\pi}{180}$$
+
+**Definition 2.3** (Angle Classification).
+
+| Type | Measure | Visual |
+|------|---------|--------|
+| **Acute** | $0° < \theta < 90°$ | Sharp |
+| **Right** | $\theta = 90°$ | L-shape |
+| **Obtuse** | $90° < \theta < 180°$ | Wide |
+| **Straight** | $\theta = 180°$ | Line |
+| **Reflex** | $180° < \theta < 360°$ | More than straight |
+
+## Why These Definitions
+
+### Why the Square Root Formula?
+
+The distance formula derives from the **Pythagorean theorem**:
+
+```
+     B(x₂,y₂)
+        /|
+     d / |
+      /  | Δy
+     /   |
+    /____|
+  A(x₁,y₁)
+     Δx
+```
+
+By Pythagoras on the right triangle:
+$$d^2 = (\Delta x)^2 + (\Delta y)^2$$
+
+Taking the square root gives the distance formula.
+
+**Why squared terms?** 
+- Makes distance always positive
+- Satisfies triangle inequality
+- Emerges naturally from inner products in linear algebra
+
+### Why Radians as the "Natural" Unit?
+
+**Radians** defined by:
+$$\theta = \frac{s}{r}$$
+
+where $s$ = arc length, $r$ = radius.
+
+**Advantages:**
+1. **Calculus works cleanly**: $\frac{d}{dx}\sin x = \cos x$ (only in radians!)
+2. **Taylor series simple**: $\sin x = x - \frac{x^3}{6} + \frac{x^5}{120} - \cdots$
+3. **Arc length formula**: $s = r\theta$ (direct, no conversion)
+4. **Natural units**: $\theta = 1$ rad means arc length equals radius
+
+**Degrees are arbitrary:** 360° chosen by Babylonians (base-60 system, divisibility).
+
+## Key Properties
+
+### Properties of Distance
+
+**Theorem 2.1** (Distance Invariance).  
+Distance is **invariant** under:
+- **Translation**: Shifting all points by same vector
+- **Rotation**: Rotating entire figure
+- **Reflection**: Mirroring across a line
+
+*This is what makes distance a fundamental geometric quantity—it doesn't depend on coordinate system choice.*
+
+**Proof sketch (Translation):**  
+If we shift $A \to A'$ and $B \to B'$ by vector $\mathbf{v}$:
+$$d(A', B') = \|(B + \mathbf{v}) - (A + \mathbf{v})\| = \|B - A\| = d(A, B)$$
+
+### Properties of Angles
+
+**Theorem 2.2** (Angle Addition).  
+If ray $\overrightarrow{OB}$ lies between $\overrightarrow{OA}$ and $\overrightarrow{OC}$:
+$$\angle AOC = \angle AOB + \angle BOC$$
+
+**Theorem 2.3** (Vertical Angles).  
+When two lines intersect, **vertical angles** are congruent.
+
+```
+    \ α /
+     \|/
+  ----+---- β
+     /|\
+    / γ \
+```
+
+*Proof:* $\alpha + \beta = 180°$ and $\beta + \gamma = 180°$ (linear pairs)  
+Therefore $\alpha = \gamma$ (both equal $180° - \beta$). $\square$
+
+## Main Theorems
+
+**Theorem 2.4** (Angle Sum in Triangle).  
+The sum of interior angles in any triangle is **180°**.
+
+**Theorem 2.5** (Exterior Angle Theorem).  
+An exterior angle of a triangle equals the sum of the two non-adjacent interior angles.
+
+**Theorem 2.6** (Perpendicular Distance).  
+The shortest distance from point $P$ to line $\ell$ is the **perpendicular distance**.
+
+*Proof:* Any other path from $P$ to $\ell$ forms the hypotenuse of a right triangle, which is longer than the leg. $\square$
+
+## Computational Methods
+
+### Computing Distance
+
+```python
+import math
+
+def euclidean_distance(p1, p2):
+    """
+    Compute Euclidean distance between two points.
+    
+    Args:
+        p1, p2: tuples (x, y) or lists [x, y]
+    
+    Returns:
+        float: Euclidean distance
+    
+    Examples:
+        >>> euclidean_distance((0, 0), (3, 4))
+        5.0
+        >>> euclidean_distance((1, 2), (4, 6))
+        5.0
+    """
+    return math.sqrt(sum((a - b)**2 for a, b in zip(p1, p2)))
+
+# Vectorized version for numpy
+import numpy as np
+
+def distance_numpy(p1, p2):
+    """Numpy implementation for efficiency."""
+    return np.linalg.norm(np.array(p2) - np.array(p1))
+
+# Distance matrix for multiple points
+def pairwise_distances(points):
+    """
+    Compute all pairwise distances.
+    
+    Args:
+        points: list of (x, y) tuples
+    
+    Returns:
+        2D array of distances
+    """
+    n = len(points)
+    distances = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i+1, n):
+            d = euclidean_distance(points[i], points[j])
+            distances[i, j] = distances[j, i] = d
+    return distances
+```
+
+### Computing Angles
+
+**From three points** $A$, $B$, $C$ (angle at vertex $B$):
+
+```python
+def angle_from_three_points(A, B, C, degrees=True):
+    """
+    Compute angle ABC (at vertex B).
+    
+    Args:
+        A, B, C: tuples (x, y)
+        degrees: if True, return degrees; else radians
+    
+    Returns:
+        float: angle at B
+    
+    Examples:
+        >>> angle_from_three_points((0,0), (1,0), (1,1))
+        90.0
+    """
+    # Vectors BA and BC
+    BA = np.array(A) - np.array(B)
+    BC = np.array(C) - np.array(B)
+    
+    # Dot product and magnitudes
+    dot = np.dot(BA, BC)
+    mag_BA = np.linalg.norm(BA)
+    mag_BC = np.linalg.norm(BC)
+    
+    # Angle from dot product formula
+    cos_angle = dot / (mag_BA * mag_BC)
+    # Clamp to [-1, 1] to handle numerical errors
+    cos_angle = np.clip(cos_angle, -1, 1)
+    angle_rad = np.arccos(cos_angle)
+    
+    return np.degrees(angle_rad) if degrees else angle_rad
+```
+
+## Examples Progression
+
+### Example 1: Simplest
+
+**Problem:** Find distance between $A(0, 0)$ and $B(3, 4)$.
+
+**Solution:**
+$$d = \sqrt{(3-0)^2 + (4-0)^2} = \sqrt{9 + 16} = \sqrt{25} = 5$$
+
+**Verification:** This is the famous 3-4-5 right triangle!
+
+---
+
+### Example 2: Standard
+
+**Problem:** Find distance between $A(-2, 3)$ and $B(1, 7)$ in $\mathbb{R}^2$.
+
+**Solution:**
+$$d = \sqrt{(1-(-2))^2 + (7-3)^2} = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = 5$$
+
+**Observation:** Same distance as Example 1—translation doesn't change distance!
+
+---
+
+### Example 3: Higher Dimension
+
+**Problem:** Find distance between $A(1, 2, 3)$ and $B(4, 6, 8)$ in $\mathbb{R}^3$.
+
+**Solution:**
+$$d = \sqrt{(4-1)^2 + (6-2)^2 + (8-3)^2} = \sqrt{9 + 16 + 25} = \sqrt{50} = 5\sqrt{2}$$
+
+**Pattern:** Pythagorean theorem extends to any dimension!
+
+---
+
+### Example 4: Edge Case
+
+**Problem:** Distance between $A(2, 5)$ and itself.
+
+**Solution:**
+$$d = \sqrt{(2-2)^2 + (5-5)^2} = 0$$
+
+**Interpretation:** Only coincident points have distance 0 (metric axiom).
+
+---
+
+### Example 5: Non-Example (Manhattan Distance)
+
+**Context:** In a city grid, you can't walk diagonally through buildings.
+
+**Manhattan distance:** $d_1(A, B) = |x_2 - x_1| + |y_2 - y_1|$
+
+**For** $A(0, 0)$, $B(3, 4)$:
+- **Euclidean**: $d_2 = 5$
+- **Manhattan**: $d_1 = 7$
+
+**Note:** This is a different **metric**—satisfies metric axioms but uses different formula.
+
+## Common Pitfalls
+
+::: {.callout-warning icon=false}
+## Mistakes to Avoid
+
+**Pitfall 1: Forgetting Square Root**  
+❌ $d = (x_2 - x_1)^2 + (y_2 - y_1)^2$  
+✅ $d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$
+
+**Pitfall 2: Using Degrees in Calculus**  
+❌ $\frac{d}{dx}\sin(x°)$ is undefined!  
+✅ Always use radians for calculus: $\frac{d}{dx}\sin x = \cos x$
+
+**Pitfall 3: Assuming Perpendicular Without Verification**  
+❌ "Lines look perpendicular"  
+✅ Check: slopes multiply to $-1$, or angle = 90° via dot product
+
+**Pitfall 4: Sign Confusion with Angles**  
+❌ Treating 270° as -90° inconsistently  
+✅ Be consistent: counterclockwise positive (standard convention)
+
+**Pitfall 5: Dimension Mismatch**  
+❌ Applying 2D formula to 3D points  
+✅ Ensure formula matches dimension: $d = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$
+:::
+
+## Connections
+
+### Prerequisites
+
+- **Axioms** (@sec-axioms): Distance satisfies metric axioms
+- **Pythagorean Theorem** (will see in @sec-pythagoras): Foundation of distance formula
+- **Number Systems** (Domain 1): Real numbers for measurements
+
+### This Concept Enables
+
+**Within Geometry:**
+- **Trigonometry** (will cover later): Relates angles to distances
+- **Circles** (will cover later): Defined by constant distance
+- **Coordinate Geometry**: Analytic study of shapes
+
+**Other Domains:**
+- **Domain 4 (Calculus)**: Derivatives as rates of distance change
+- **Domain 5 (Linear Algebra)**: Inner products generalize angles
+- **Domain 7 (Real Analysis)**: Metric spaces abstract distance
+
+### ML Applications
+
+**Distance Metrics:**
+- **k-NN**: Classification by Euclidean distance
+- **k-Means**: Clustering minimizes within-cluster distances
+- **Kernel Methods**: $K(\mathbf{x}, \mathbf{y}) = f(\|\mathbf{x} - \mathbf{y}\|)$
+
+**Angle Metrics:**
+- **Cosine Similarity**: $\cos \theta = \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{x}\| \|\mathbf{y}\|}$
+- **Angular Distance**: Used in embeddings (Word2Vec, etc.)
+- **Gradient Direction**: Angle of steepest ascent
+
+**Optimization:**
+- **Gradient**: $\|\nabla f\|$ = magnitude, direction = angle
+- **Line Search**: Moving distance along gradient direction
+- **Trust Regions**: Constrain step size (distance)
+
+### Lean Formalization
+
+```lean
+import Mathlib.Analysis.NormedSpace.Basic
+
+-- Euclidean distance
+def euclidean_dist (x y : ℝ × ℝ) : ℝ :=
+  Real.sqrt ((x.1 - y.1)^2 + (x.2 - y.2)^2)
+
+-- Metric properties
+theorem dist_nonneg (x y : ℝ × ℝ) : 
+  0 ≤ euclidean_dist x y := by sorry
+
+theorem dist_sym (x y : ℝ × ℝ) : 
+  euclidean_dist x y = euclidean_dist y x := by sorry
+
+theorem triangle_ineq (x y z : ℝ × ℝ) : 
+  euclidean_dist x z ≤ euclidean_dist x y + euclidean_dist y z := by sorry
+```
+
+---
+
+# The Pythagorean Theorem {#sec-pythagoras}
+
+## Motivation & Context
+
+### Historical Significance
+
+The Pythagorean theorem is arguably the most important result in elementary mathematics:
+
+**Ancient Knowledge:**
+- **Babylonians** (c. 1800 BCE): Knew Pythagorean triples
+- **Pythagoras** (c. 500 BCE): First rigorous proof
+- **Euclid** (*Elements*, Book I, Prop. 47): Geometric proof
+- **China** (*Zhou Bi Suan Jing*, c. 300 BCE): Independent discovery
+
+**Over 370 Different Proofs!**
+- Geometric rearrangements
+- Algebraic derivations
+- Calculus-based approaches
+- Even one by U.S. President James Garfield!
+
+### Why It Matters
+
+**Foundation of:**
+- Distance calculations in coordinates
+- Trigonometry (sine, cosine, tangent)
+- Euclidean norm in linear algebra
+- Spacetime metric in relativity
+
+**ML Applications:**
+- Every distance calculation uses this theorem
+- Regularization: $\|\theta\|_2^2 = \sum \theta_i^2$
+- Gradient magnitude: $\|\nabla f\| = \sqrt{\sum (\partial f/\partial x_i)^2}$
+- Neural network initialization: Xavier scales by $\sqrt{n}$
+
+## Intuitive Picture
+
+### The Setup
+
+Draw a right triangle with:
+- **Legs**: sides $a$ and $b$ (forming the right angle)
+- **Hypotenuse**: side $c$ (opposite the right angle, longest side)
+
+### Visual Proof Intuition
+
+Build squares on each side:
+
+![Pythagorean Visual Proof](euclidean_geometry_enhanced_files/visualizations/pythagorean_visual_proof.svg){width=80%}
+
+**Key Insight:** The area of the square on the hypotenuse equals the sum of areas on the two legs:
+
+$$\text{Area}(c^2) = \text{Area}(a^2) + \text{Area}(b^2)$$
+
+This isn't just symbolic—you can literally cut and rearrange the smaller squares to fill the larger one!
+
+## Precise Definition
+
+**Theorem 3.1** (Pythagorean Theorem).  
+In a right triangle with legs of lengths $a$ and $b$, and hypotenuse of length $c$:
+
+$$a^2 + b^2 = c^2$$
+
+**Converse (Theorem 3.2).**  
+If three sides of a triangle satisfy $a^2 + b^2 = c^2$, then the triangle is a right triangle with hypotenuse $c$.
+
+## Why These Definitions
+
+### Why Squares of Sides?
+
+**Geometric Reason:** Squares are natural area measurements in Euclidean geometry.
+
+**Algebraic Reason:** Powers of 2 appear naturally in:
+- Distance formulas: $d^2 = \Delta x^2 + \Delta y^2$
+- Variance: $\sigma^2 = E[(X - \mu)^2]$
+- Least squares: minimize $\sum (y_i - \hat{y}_i)^2$
+
+**Physical Reason:** Energy scales with square of velocity: $E = \frac{1}{2}mv^2$
+
+### Why Only Right Triangles?
+
+The perpendicularity (90° angle) is essential. For other angles:
+
+**Law of Cosines** (generalizes Pythagorean theorem):
+$$c^2 = a^2 + b^2 - 2ab\cos C$$
+
+- When $C = 90°$: $\cos 90° = 0$, so $c^2 = a^2 + b^2$ (Pythagorean!)
+- When $C < 90°$ (acute): $\cos C > 0$, so $c^2 < a^2 + b^2$
+- When $C > 90°$ (obtuse): $\cos C < 0$, so $c^2 > a^2 + b^2$
+
+## Key Properties
+
+### Pythagorean Triples
+
+**Definition:** Integer solutions to $a^2 + b^2 = c^2$.
+
+**Common Examples:**
+| $a$ | $b$ | $c$ | Verification |
+|-----|-----|-----|--------------|
+| 3   | 4   | 5   | $9 + 16 = 25$ ✓ |
+| 5   | 12  | 13  | $25 + 144 = 169$ ✓ |
+| 8   | 15  | 17  | $64 + 225 = 289$ ✓ |
+| 7   | 24  | 25  | $49 + 576 = 625$ ✓ |
+
+**Property:** If $(a, b, c)$ is a triple, so is $(ka, kb, kc)$ for any $k > 0$.
+
+### Connection to Distance Formula
+
+The distance between $(x_1, y_1)$ and $(x_2, y_2)$ follows from applying Pythagorean theorem:
+
+```
+     (x₂,y₂)
+        /|
+     d / |
+      /  | |y₂-y₁|
+     /   |
+    /____|
+ (x₁,y₁)
+   |x₂-x₁|
+```
+
+By Pythagoras:
+$$d^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2$$
+
+Therefore:
+$$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+
+This generalizes to $n$ dimensions!
+
+## Main Theorems (Multiple Proofs)
+
+### Proof 1: Rearrangement (Most Intuitive)
+
+**Setup:** Square of side $(a + b)$ containing four copies of the triangle.
+
+**Area calculation (two methods):**
+
+**Method 1:** Outer square  
+$$A_{\text{outer}} = (a + b)^2 = a^2 + 2ab + b^2$$
+
+**Method 2:** Four triangles + inner square  
+$$A_{\text{triangles + inner}} = 4 \cdot \frac{1}{2}ab + c^2 = 2ab + c^2$$
+
+**Equating:**
+$$a^2 + 2ab + b^2 = 2ab + c^2$$
+$$a^2 + b^2 = c^2 \quad \square$$
+
+### Proof 2: Similarity (Geometric)
+
+**Setup:** Drop altitude from right angle to hypotenuse, dividing it into segments $p$ and $q$ where $p + q = c$.
+
+**Key observation:** Creates three similar triangles:
+1. Original: legs $a, b$, hypotenuse $c$
+2. Left sub-triangle  
+3. Right sub-triangle
+
+**From similarity:**
+$$\frac{a}{c} = \frac{p}{a} \Rightarrow a^2 = cp$$
+$$\frac{b}{c} = \frac{q}{b} \Rightarrow b^2 = cq$$
+
+**Adding:**
+$$a^2 + b^2 = cp + cq = c(p + q) = c \cdot c = c^2 \quad \square$$
+
+### Proof 3: Coordinate Geometry
+
+**Setup:** Place right angle at origin, legs along axes.
+
+**Coordinates:** $O = (0, 0)$, $A = (a, 0)$, $B = (0, b)$
+
+**Distance from $A$ to $B$:**
+$$c = \sqrt{(0 - a)^2 + (b - 0)^2} = \sqrt{a^2 + b^2}$$
+
+**Squaring:**
+$$c^2 = a^2 + b^2 \quad \square$$
+
+## Computational Methods
+
+### Finding the Third Side
+
+```python
+import math
+
+def pythagorean_solve(a=None, b=None, c=None):
+    """
+    Solve for missing side of right triangle.
+    
+    Args:
+        a, b: legs (one may be None)
+        c: hypotenuse (may be None)
+    
+    Returns:
+        float: the missing side
+    
+    Raises:
+        ValueError: if not exactly one side is unknown
+    
+    Examples:
+        >>> pythagorean_solve(b=4, c=5)  # find a
+        3.0
+        >>> pythagorean_solve(a=3, b=4)  # find c
+        5.0
+    """
+    unknown_count = sum(x is None for x in [a, b, c])
+    if unknown_count != 1:
+        raise ValueError("Exactly one side must be unknown")
+    
+    if a is None:
+        if c <= b:
+            raise ValueError("Hypotenuse must be longest side")
+        return math.sqrt(c**2 - b**2)
+    elif b is None:
+        if c <= a:
+            raise ValueError("Hypotenuse must be longest side")
+        return math.sqrt(c**2 - a**2)
+    else:  # c is None
+        return math.sqrt(a**2 + b**2)
+
+# Example usage
+print(f"3-4-?: {pythagorean_solve(a=3, b=4)}")  # 5.0
+print(f"5-?-13: {pythagorean_solve(a=5, c=13)}")  # 12.0
+```
+
+### Generating Pythagorean Triples
+
+**Euclid's Formula:** For integers $m > n > 0$:
+
+$$a = m^2 - n^2, \quad b = 2mn, \quad c = m^2 + n^2$$
+
+generates all **primitive** triples (where $\gcd(a,b,c) = 1$).
+
+```python
+def generate_pythagorean_triples(max_c, primitive_only=True):
+    """
+    Generate Pythagorean triples up to max hypotenuse.
+    
+    Args:
+        max_c: maximum hypotenuse value
+        primitive_only: if True, only primitive triples
+    
+    Returns:
+        list of (a, b, c) tuples
+    
+    Examples:
+        >>> triples = generate_pythagorean_triples(30)
+        >>> (3, 4, 5) in triples
+        True
+    """
+    triples = []
+    m = 2
+    while m**2 + 1 <= max_c:
+        for n in range(1, m):
+            a = m**2 - n**2
+            b = 2 * m * n
+            c = m**2 + n**2
+            
+            if c > max_c:
+                break
+            
+            # Ensure a < b for consistency
+            if a > b:
+                a, b = b, a
+            
+            if primitive_only:
+                triples.append((a, b, c))
+            else:
+                # Add multiples
+                k = 1
+                while k * c <= max_c:
+                    triples.append((k*a, k*b, k*c))
+                    k += 1
+        m += 1
+    
+    return sorted(set(triples), key=lambda t: t[2])
+
+# Generate triples with c ≤ 30
+for a, b, c in generate_pythagorean_triples(30):
+    print(f"({a}, {b}, {c}): {a}² + {b}² = {a**2} + {b**2} = {a**2+b**2} = {c}² = {c**2}")
+```
+
+## Examples Progression
+
+### Example 1: Simplest (3-4-5)
+
+**Given:** Right triangle with legs 3 and 4
+
+**Find:** Hypotenuse
+
+**Solution:**
+$$c = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$$
+
+**Verification:** $3^2 + 4^2 = 9 + 16 = 25 = 5^2$ ✓
+
+---
+
+### Example 2: Standard (Missing Leg)
+
+**Given:** Right triangle with leg 5 and hypotenuse 13
+
+**Find:** Other leg
+
+**Solution:**
+$$b = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = \sqrt{144} = 12$$
+
+**Verification:** $5^2 + 12^2 = 25 + 144 = 169 = 13^2$ ✓
+
+**Note:** This is the 5-12-13 Pythagorean triple!
+
+---
+
+### Example 3: 3D Distance
+
+**Given:** Points $A(1, 2, 3)$ and $B(4, 6, 8)$ in space
+
+**Find:** Distance
+
+**Method:** Apply Pythagorean theorem twice:
+
+**Step 1:** Distance in $xy$-plane:
+$$d_{xy} = \sqrt{(4-1)^2 + (6-2)^2} = \sqrt{9 + 16} = 5$$
+
+**Step 2:** Add $z$-component:
+$$d = \sqrt{d_{xy}^2 + (8-3)^2} = \sqrt{25 + 25} = \sqrt{50} = 5\sqrt{2}$$
+
+**Direct formula:**
+$$d = \sqrt{(4-1)^2 + (6-2)^2 + (8-3)^2} = \sqrt{9 + 16 + 25} = 5\sqrt{2}$$
+
+---
+
+### Example 4: Edge Case (Degenerate)
+
+**Given:** "Triangle" with sides 0, 4, 4
+
+**Check:** $0^2 + 4^2 = 0 + 16 = 16 = 4^2$ ✓
+
+**Interpretation:** Degenerate case—the two legs are collinear (form a straight line). The "triangle" is actually a line segment of length 4.
+
+---
+
+### Example 5: Non-Example (Obtuse Triangle)
+
+**Given:** Triangle with sides 3, 4, 6
+
+**Check:** $3^2 + 4^2 = 9 + 16 = 25$ but $6^2 = 36$
+
+**Result:** $25 \neq 36$, so NOT a right triangle.
+
+**Analysis:** $25 < 36 \Rightarrow$ **obtuse** triangle (angle opposite longest side > 90°)
+
+**Law of Cosines:** $c^2 = a^2 + b^2 - 2ab\cos C$
+$$36 = 9 + 16 - 2(3)(4)\cos C$$
+$$36 = 25 - 24\cos C$$
+$$\cos C = -\frac{11}{24} < 0$$
+
+Since $\cos C < 0$, we have $C > 90°$ (obtuse).
+
+## Common Pitfalls
+
+::: {.callout-warning icon=false}
+## Mistakes to Avoid
+
+**Pitfall 1: Forgetting Which Side is Hypotenuse**  
+❌ $5^2 + 13^2 = c^2$ (treating 13 as a leg)  
+✅ Hypotenuse is **always** opposite the right angle and is the **longest** side
+
+**Pitfall 2: Using for Non-Right Triangles**  
+❌ Applying $a^2 + b^2 = c^2$ to any triangle  
+✅ For non-right triangles, use Law of Cosines: $c^2 = a^2 + b^2 - 2ab\cos C$
+
+**Pitfall 3: Arithmetic Errors**  
+❌ $(c-a)^2 = c^2 - a^2$ (WRONG!)  
+✅ $c^2 - a^2 \neq (c-a)^2$; must use $b = \sqrt{c^2 - a^2}$
+
+**Pitfall 4: Negative "Solutions"**  
+❌ Accepting $c = -5$ as a solution  
+✅ Side lengths must be **positive**: $c = 5$
+
+**Pitfall 5: Confusing $a^2 + b^2 = c^2$ with $a + b = c$**  
+❌ $3 + 4 = 7 \neq 5$, so theorem wrong?  
+✅ It's $3^2 + 4^2 = 9 + 16 = 25 = 5^2$ ✓
+
+**Pitfall 6: Rounding Too Early**  
+❌ $\sqrt{50} \approx 7$, so use 7  
+✅ Keep exact: $\sqrt{50} = 5\sqrt{2} \approx 7.071$
+
+:::
+
+## Connections
+
+### Prerequisites
+
+- **Axioms** (@sec-axioms): Geometric foundations
+- **Distance** (@sec-distance): Measuring lengths
+- **Congruence** (coming): Proving triangles equal
+
+### This Concept Enables
+
+**Immediate Applications:**
+- **Distance Formula**: Direct application
+- **Trigonometry**: Foundation for trig functions
+- **Circles**: Computing chord lengths, tangent properties
+
+**Advanced Topics:**
+- **Euclidean Norm** (Linear Algebra): $\|\mathbf{x}\| = \sqrt{x_1^2 + \cdots + x_n^2}$
+- **Arc Length** (Calculus): $s = \int \sqrt{1 + (f')^2} \, dx$
+- **3D Geometry**: Spatial distances and vectors
+
+### ML Applications
+
+**Distance Metrics:**
+```python
+# Euclidean distance (L₂ norm)
+def l2_norm(x):
+    return np.sqrt(np.sum(x**2))  # Direct application!
+
+# Used in:
+# - k-NN classification
+# - k-Means clustering  
+# - Gaussian RBF kernel
+```
+
+**Gradient Magnitude:**
+$$\|\nabla f\| = \sqrt{\left(\frac{\partial f}{\partial x}\right)^2 + \left(\frac{\partial f}{\partial y}\right)^2 + \cdots}$$
+
+**Regularization (L₂ penalty):**
+$$\text{Loss} = \text{MSE} + \lambda \|\theta\|_2^2 = \text{MSE} + \lambda \sum_{i=1}^n \theta_i^2$$
+
+**Neural Network Initialization:**  
+Xavier/He initialization scales weights by $\frac{1}{\sqrt{n}}$ where $n$ = number of inputs. This comes from variance calculations using Pythagorean-style sums!
+
+### Historical Note
+
+**Proof #371:** Yes, there really are over 370 known proofs! See *The Pythagorean Proposition* by Elisha Loomis (1927) for a collection of 371 proofs.
+
+**Most unusual:** President James A. Garfield's proof (1876) using trapezoid area.
+
+### Lean Formalization
+
+```lean
+import Mathlib.Geometry.Euclidean.Basic
+
+-- Pythagorean theorem statement
+theorem pythagoras {a b c : ℝ} (h : RightTriangle a b c) :
+  c^2 = a^2 + b^2 := by
+  sorry  -- Proof omitted
+
+-- Converse
+theorem pythagoras_converse {a b c : ℝ} 
+  (h : c^2 = a^2 + b^2) : 
+  RightTriangle a b c := by
+  sorry
+
+-- Application: distance formula
+theorem distance_formula (p q : ℝ × ℝ) :
+  dist p q = Real.sqrt ((p.1 - q.1)^2 + (p.2 - q.2)^2) := by
+  -- Follows from Pythagorean theorem
+  sorry
+```
+
+---
+
+## Interactive Exploration
+
+::: {.callout-tip}
+## Try It Yourself!
+
+Use the interactive visualization below to explore the Pythagorean theorem dynamically. Adjust the leg lengths and watch how the squares' areas relate:
+
+<iframe src="euclidean_geometry_enhanced_files/visualizations/pythagorean_interactive.html" width="100%" height="750px" style="border:2px solid #bdc3c7; border-radius:5px;"></iframe>
+
+**Observations to make:**
+- The equation $a^2 + b^2 = c^2$ holds for all leg combinations
+- As you increase $a$ or $b$, the hypotenuse $c$ grows predictably
+- The visual proof becomes clear: areas on the legs sum to area on hypotenuse
+:::
+
+---
+
+## Practice Problems
+
+::: {.callout-tip collapse="true"}
+## Expand for Problems with Solutions
+
+### Problem 1: Distance Calculation
+
+**Given:** Points $A(-3, 2)$ and $B(5, 8)$ in $\mathbb{R}^2$
+
+**Find:** Distance between $A$ and $B$
+
+<details>
+<summary>Solution (click to reveal)</summary>
+
+$$d = \sqrt{(5-(-3))^2 + (8-2)^2} = \sqrt{8^2 + 6^2} = \sqrt{64 + 36} = \sqrt{100} = 10$$
+
+**Answer:** 10 units
+</details>
+
+---
+
+### Problem 2: Pythagorean Application
+
+**Given:** A 20-foot ladder leans against a wall. The base is 12 feet from the wall.
+
+**Find:** Height the ladder reaches on the wall
+
+<details>
+<summary>Solution (click to reveal)</summary>
+
+Let $h$ = height on wall. We have a right triangle with:
+- Hypotenuse: $c = 20$ ft (ladder)
+- Base: $a = 12$ ft
+- Height: $b = h$ ft (unknown)
+
+By Pythagorean theorem:
+$$12^2 + h^2 = 20^2$$
+$$144 + h^2 = 400$$
+$$h^2 = 256$$
+$$h = 16 \text{ ft}$$
+
+**Answer:** 16 feet high
+
+**Verification:** $12^2 + 16^2 = 144 + 256 = 400 = 20^2$ ✓
+
+**Note:** This is a multiple of the 3-4-5 triple: $(12, 16, 20) = 4 \times (3, 4, 5)$
+</details>
+
+---
+
+### Problem 3: Congruence Proof
+
+**Given:** $\triangle ABC$ and $\triangle DEF$ with:
+- $AB = 8$, $BC = 10$, $CA = 12$  
+- $DE = 8$, $EF = 10$, $FD = 12$
+
+**Prove:** The triangles are congruent
+
+<details>
+<summary>Solution (click to reveal)</summary>
+
+**Proof:**
+
+1. $AB = DE = 8$ (given)
+2. $BC = EF = 10$ (given)  
+3. $CA = FD = 12$ (given)
+4. Therefore $\triangle ABC \cong \triangle DEF$ by **SSS** (Side-Side-Side) $\square$
+
+**Conclusion:** The triangles are congruent. All corresponding parts are equal.
+</details>
+
+---
+
+### Problem 4: Non-Right Triangle
+
+**Given:** Triangle with sides 7, 8, 12
+
+**Question:** Is this a right triangle? If not, is it acute or obtuse?
+
+<details>
+<summary>Solution (click to reveal)</summary>
+
+**Check:** Does $7^2 + 8^2 = 12^2$?
+
+$$49 + 64 = 113 \neq 144$$
+
+So it's **not** a right triangle.
+
+**Determine acute vs obtuse:**
+
+$7^2 + 8^2 = 113 < 144 = 12^2$
+
+Since $a^2 + b^2 < c^2$, the triangle is **obtuse** (angle opposite longest side > 90°).
+
+**Verification with Law of Cosines:**
+$$\cos C = \frac{a^2 + b^2 - c^2}{2ab} = \frac{49 + 64 - 144}{2(7)(8)} = \frac{-31}{112} < 0$$
+
+Since $\cos C < 0$, we have $90° < C < 180°$ (obtuse). ✓
+
+**Answer:** Obtuse triangle
+</details>
+
+---
+
+### Problem 5: 3D Distance
+
+**Given:** Points $P(2, -1, 3)$ and $Q(5, 3, -1)$ in $\mathbb{R}^3$
+
+**Find:** Distance $PQ$
+
+<details>
+<summary>Solution (click to reveal)</summary>
+
+Apply 3D distance formula:
+$$d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2}$$
+
+$$d = \sqrt{(5-2)^2 + (3-(-1))^2 + ((-1)-3)^2}$$
+$$= \sqrt{3^2 + 4^2 + (-4)^2}$$
+$$= \sqrt{9 + 16 + 16}$$
+$$= \sqrt{41}$$
+
+**Answer:** $\sqrt{41} \approx 6.40$ units
+
+**Note:** This is NOT a Pythagorean triple (41 is not a perfect square).
+</details>
+
+:::
