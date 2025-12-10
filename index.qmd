@@ -27,4 +27,4 @@ Lean proofs ensure correctness; visualizations provide geometric intuition. The 
 
 ![](assets/profile.png){width=180px fig-align="center" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);"}
 
-Hi, I am Ahmad Sardarç. I am deeply interested in the science underlying Machine Learning, with particular focus on mathematical and theoretical foundations. I currently work as an MLE, contributing end-to-end across experimentation, modeling, and analysis.
+Hi, I am Ahmad Sardar. I am deeply interested in the science underlying Machine Learning, with particular focus on mathematical and theoretical foundations. I currently work as an MLE, contributing end-to-end across experimentation, modeling, and analysis.
