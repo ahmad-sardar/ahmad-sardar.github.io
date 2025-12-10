@@ -17,20 +17,13 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Cache TinyTeX
-        uses: actions/cache@v4
-        with:
-          path: ~/.TinyTeX
-          key: tinytex-${{ runner.os }}
-
-      - name: Install dependencies
+      - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y librsvg2-bin
-          wget -qO- https://yihui.org/tinytex/install-unx.sh | sh
-          export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
-          tlmgr update --self
-          tlmgr install tikz pgf amsmath amsthm amssymb xcolor geometry unicode-math lualatex-math microtype parskip fancyvrb framed longtable booktabs array calc footnote graphicx caption hyperref xparse l3keys2e fontspec fix-cm lmodern upquote textcomp etoolbox kvoptions kvsetkeys ltxcmds
+
+      - name: Install TinyTeX via Quarto
+        run: quarto install tinytex
 
       - name: Render Quarto project
         run: quarto render
