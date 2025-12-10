@@ -29,6 +29,7 @@ jobs:
           sudo apt-get install -y librsvg2-bin
           wget -qO- https://yihui.org/tinytex/install-unx.sh | sh
           ~/.TinyTeX/bin/*/tlmgr path add
+          ~/.TinyTeX/bin/*/tlmgr install tikz pgf amsmath amsthm amssymb xcolor geometry unicode-math lualatex-math microtype parskip fancyvrb framed longtable booktabs array calc footnote graphicx caption hyperref xparse l3keys2e fontspec fix-cm lmodern upquote textcomp etoolbox kvoptions kvsetkeys ltxcmds
 
       - name: Render Quarto project
         run: quarto render
