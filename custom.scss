@@ -117,6 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 3rem;
+  margin-top: 1px;
   margin-bottom: $spacing-lg;
   background: linear-gradient(135deg, $blue-medium 0%, $blue-accent 50%, $blue-light 100%);
   -webkit-background-clip: text;
@@ -320,6 +321,7 @@ pre {
   font-weight: 500;
   font-size: 1rem;
   padding: $spacing-sm $spacing-md !important;
+  padding-top: calc(#{$spacing-sm} + 20px) !important;
   border-radius: $radius-sm;
   transition: all $transition-base;
   
@@ -348,7 +350,7 @@ pre {
 
 // Move search icon up to align with other navbar icons
 .navbar #quarto-search {
-  margin-top: -20px;
+  margin-top: 1px;
 }
 
 // ============================================
@@ -543,6 +545,12 @@ figcaption {
 // Main content area
 #quarto-content {
   padding: $spacing-xl;
+  padding-top: $spacing-md;
+  
+  // Move first element (which contains title) up by reducing its padding-top
+  > *:first-child {
+    padding-top: calc(1rem - 10px) !important;
+  }
 }
 
 main {
