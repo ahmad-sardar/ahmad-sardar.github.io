@@ -8,21 +8,22 @@ execute:
 website:
   title: "Axioms to Algorithms"
   description: "Mathematics and Machine Learning from First Principles"
+  favicon: assets/favicon.png
   navbar:
     left:
       - text: "Home"
         href: index.qmd
       - text: "Mathematics"
-        menu:
-          - text: "Euclidean Geometry"
-            href: mathematics/euclidean_geometry_enhanced.qmd
+        href: mathematics/index.qmd
       - text: "Machine Learning"
-        href: machine_learning/algorithms.qmd
+        href: machine_learning/index.qmd
     right:
       - icon: github
         href: https://github.com/ahmad-sardar
       - icon: linkedin
         href: https://linkedin.com/in/asardar
+      - icon: envelope
+        href: mailto:ahmad@ahmadsardar.com
 
 
 format:
@@ -30,8 +31,8 @@ format:
     theme:
       - darkly
       - custom.scss
-    css: /styles.css
     toc: true
     toc-location: left
-    number-sections: false
+    number-sections: true
+    number-offset: -1
     embed-resources: true

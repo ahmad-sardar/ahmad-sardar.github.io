@@ -1,8 +1,6 @@
 ---
-title: "Machine Learning"
+title: "Machine Learning Algorithms"
 subtitle: "Coming Soon"
-author: "Ahmad Sardar"
-date: today
 format:
   html:
     toc: true
@@ -11,9 +9,6 @@ format:
     number-sections: true
     code-fold: false
     theme: darkly
-    css: ../styles.css
     html-math-method: mathjax
     embed-resources: true
 ---
-
-# Coming Soon

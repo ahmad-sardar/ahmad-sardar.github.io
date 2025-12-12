@@ -1,0 +1,1660 @@
+---
+title: "Mathematical Reasoning"
+subtitle: "Logic, Proof, and Set Theory"
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    number-sections: true
+    code-fold: show
+    theme: cosmo
+    html-math-method: katex
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry: margin=1in
+execute:
+  echo: true
+  warning: false
+---
+
+# Introduction {.unnumbered}
+
+This document builds foundations in logic, proof techniques, and set theory. These topics form the language and reasoning tools for all advanced mathematics.
+
+We start with propositional logic and quantifiers, move through various proof techniques, then develop set theory from basic operations through cardinality and infinite sets. Each concept progresses from intuition through formal definitions to computational methods and examples.
+
+---
+
+# Logic and Propositions
+
+## Historical Background
+
+In the late 19th century, mathematicians discovered contradictions in seemingly sound reasoning. Russell's paradox (1901) showed that intuitive set theory led to logical impossibilities. This crisis demanded a formal foundation for mathematical logic.
+
+George Boole (1847) first treated logic as algebra. Gottlob Frege (1879) developed predicate logic with quantifiers. By the early 20th century, logic became a rigorous mathematical discipline, establishing clear rules for what constitutes valid reasoning.
+
+## Understanding Propositions
+
+A proposition is a statement that's either true or false—never both, never neither. Think of it as a light switch: on (TRUE) or off (FALSE).
+
+**Propositions:**
+- "2 + 2 = 4" (TRUE)
+- "The Earth is flat" (FALSE)  
+- "P = NP" (unknown, but still a proposition)
+
+**Not propositions:**
+- "Close the door" (command)
+- "Is it raining?" (question)
+- "$x > 0$" (depends on $x$—this is a predicate)
+
+Natural language is often ambiguous: "I saw the man with the telescope" could mean two different things. Mathematical language must be precise.
+
+## Formal Definitions
+
+::: {.callout-note}
+## Definition: Proposition
+
+A **proposition** is a declarative statement with exactly one truth value: TRUE (T) or FALSE (F).
+:::
+
+### Logical Connectives
+
+**Negation** ($\neg P$):
+
+| $P$ | $\neg P$ |
+|-----|----------|
+| T   | F        |
+| F   | T        |
+
+**Conjunction** ($P \land Q$):
+
+| $P$ | $Q$ | $P \land Q$ |
+|-----|-----|-------------|
+| T   | T   | T           |
+| T   | F   | F           |
+| F   | T   | F           |
+| F   | F   | F           |
+
+True only when both are true.
+
+**Disjunction** ($P \lor Q$):
+
+| $P$ | $Q$ | $P \lor Q$ |
+|-----|-----|------------|
+| T   | T   | T          |
+| T   | F   | T          |
+| F   | T   | T          |
+| F   | F   | F          |
+
+True when at least one is true (inclusive or).
+
+**Implication** ($P \to Q$):
+
+| $P$ | $Q$ | $P \to Q$ |
+|-----|-----|-----------|
+| T   | T   | T         |
+| T   | F   | F         |
+| F   | T   | T         |
+| F   | F   | T         |
+
+The only false case: $P$ true but $Q$ false.
+
+When $P$ is false, the implication is **vacuously true** regardless of $Q$. Think of it like a promise: "If you score 100% on the exam, you'll get an A." If you score 85%, was the promise broken? No—the condition wasn't met.
+
+::: {.callout-warning}
+A common error: from $P \to Q$ and observing $Q$ is true, concluding $P$ must be true. This is **affirming the consequent** and is invalid.
+
+Example: "If it rains, the ground is wet." Seeing wet ground doesn't prove it rained—could be sprinklers.
+:::
+
+**Biconditional** ($P \leftrightarrow Q$):
+
+| $P$ | $Q$ | $P \leftrightarrow Q$ |
+|-----|-----|-----------------------|
+| T   | T   | T                     |
+| T   | F   | F                     |
+| F   | T   | F                     |
+| F   | F   | T                     |
+
+True when $P$ and $Q$ have the same truth value. Equivalent to $(P \to Q) \land (Q \to P)$.
+
+### Related Statements
+
+Given $P \to Q$:
+
+| Statement | Form | Relationship to Original |
+|-----------|------|--------------------------|
+| **Original** | $P \to Q$ | — |
+| **Contrapositive** | $\neg Q \to \neg P$ | Logically equivalent |
+| **Converse** | $Q \to P$ | NOT equivalent |
+| **Inverse** | $\neg P \to \neg Q$ | NOT equivalent |
+
+The contrapositive is equivalent to the original—sometimes proving $\neg Q \to \neg P$ is easier than proving $P \to Q$ directly.
+
+### Necessary and Sufficient Conditions
+
+When $P \to Q$ is true:
+- $P$ is **sufficient** for $Q$ (having $P$ guarantees $Q$)
+- $Q$ is **necessary** for $P$ (can't have $P$ without $Q$)
+
+For a matrix to be invertible, $\det(A) \neq 0$ is both necessary and sufficient. Being square is necessary but not sufficient.
+
+## Key Properties
+
+**De Morgan's Laws:**
+
+$$
+\neg(P \land Q) \equiv (\neg P) \lor (\neg Q)
+$$
+
+$$
+\neg(P \lor Q) \equiv (\neg P) \land (\neg Q)
+$$
+
+**Implication equivalences:**
+
+$$
+P \to Q \equiv \neg Q \to \neg P \quad \text{(contrapositive)}
+$$
+
+$$
+P \to Q \equiv \neg P \lor Q
+$$
+
+**Negating implication:**
+
+$$
+\neg(P \to Q) \equiv P \land \neg Q
+$$
+
+## Quantifiers
+
+Mathematical statements often involve variables. Quantifiers specify how variables range.
+
+**Universal quantifier** ($\forall$): "for all"
+
+$$
+\forall x \in S, P(x)
+$$
+
+means $P(x)$ is true for every element $x$ in set $S$.
+
+Examples:
+- $\forall n \in \mathbb{Z}, (n + 0 = n)$ — TRUE
+- $\forall n \in \mathbb{Z}, (n^2 > 0)$ — FALSE (fails at $n = 0$)
+
+**Existential quantifier** ($\exists$): "there exists"
+
+$$
+\exists x \in S, P(x)
+$$
+
+means $P(x)$ is true for at least one element $x$ in $S$.
+
+Examples:
+- $\exists n \in \mathbb{Z}, (n^2 = 4)$ — TRUE ($n = 2$ or $n = -2$)
+- $\exists x \in \mathbb{R}, (x^2 = -1)$ — FALSE (no real solution)
+
+### Negating Quantifiers
+
+$$
+\neg(\forall x, P(x)) \equiv \exists x, \neg P(x)
+$$
+
+"Not all satisfy $P$" means "some doesn't satisfy $P$"
+
+$$
+\neg(\exists x, P(x)) \equiv \forall x, \neg P(x)
+$$
+
+"There doesn't exist" means "all don't satisfy $P$"
+
+### Order Matters
+
+::: {.callout-important}
+When quantifiers have different types ($\forall$ vs $\exists$), **order is crucial**.
+:::
+
+Statement A: $\forall x \, \exists y \, (x < y)$
+
+"For every $x$, there exists $y$ bigger than $x$"
+
+**TRUE** — given any $x$, choose $y = x + 1$
+
+Statement B: $\exists y \, \forall x \, (x < y)$
+
+"There exists $y$ bigger than all $x$"
+
+**FALSE** — no maximum real number exists
+
+The difference: In A, $y$ depends on $x$ (different $y$ for each $x$). In B, one fixed $y$ must work for all $x$ simultaneously.
+
+The $\varepsilon$-$\delta$ definition of continuity uses this pattern:
+
+$$
+\forall \varepsilon > 0, \exists \delta > 0, \forall x, (|x - a| < \delta \to |f(x) - f(a)| < \varepsilon)
+$$
+
+Someone gives you any $\varepsilon > 0$, then you find $\delta > 0$ (depending on that $\varepsilon$), such that the condition holds for all $x$.
+
+### Edge Cases
+
+When working with statements about real numbers or integers, always check:
+- $x = 0$ (additive identity, no multiplicative inverse)
+- $x = 1$ (multiplicative identity)
+- $x = -1$ (sign changer)
+- Positive and negative cases separately
+- For squares: negative inputs fail since $x^2 \geq 0$ in $\mathbb{R}$
+
+## Examples
+
+### Example 1: Simple Truth Table
+
+Verify $P \to Q \equiv \neg P \lor Q$:
+
+| $P$ | $Q$ | $\neg P$ | $P \to Q$ | $\neg P \lor Q$ |
+|-----|-----|----------|-----------|-----------------|
+| T   | T   | F        | T         | T               |
+| T   | F   | F        | F         | F               |
+| F   | T   | T        | T         | T               |
+| F   | F   | T        | T         | T               |
+
+Last two columns match—the statements are equivalent.
+
+### Example 2: Quantifier Order
+
+Statement: $\forall x \in \mathbb{R}, \exists y \in \mathbb{R}, (x + y = 0)$
+
+"Every number has an additive inverse"
+
+**TRUE** — given any $x$, choose $y = -x$
+
+Compare: $\exists y \in \mathbb{R}, \forall x \in \mathbb{R}, (x + y = 0)$
+
+"There exists a universal additive inverse"
+
+**FALSE** — no single $y$ makes $x + y = 0$ for all $x$
+
+### Example 3: Vacuous Truth
+
+Statement: $\forall x \in \emptyset, (x > 100)$
+
+**TRUE** (vacuously)
+
+The hypothesis "$x \in \emptyset$" is always false (empty set has no elements). By definition of implication, FALSE $\to$ Q is TRUE for any Q.
+
+Like saying "all unicorns in this room are purple"—vacuously true.
+
+### Example 4: Non-Example
+
+"$x > 0$" is **not a proposition** because truth value depends on $x$.
+
+To make it a proposition:
+- Add quantifier: $\forall x \in \mathbb{R}^+, (x > 0)$ — TRUE
+- Specify value: "5 > 0" — TRUE (now it's a proposition)
+
+## Frequent Mistakes
+
+**Confusing "or" with "exclusive or":**
+
+Mathematical OR is inclusive—$P \lor Q$ is true when both are true. Natural language often implies "one or the other, not both."
+
+**Affirming the consequent:**
+
+From $P \to Q$ and $Q$, you cannot conclude $P$. Ground being wet doesn't prove it rained.
+
+**Mishandling vacuous truth:**
+
+"If $0 = 1$, then I am Napoleon" is TRUE (vacuously). The hypothesis is false, so the implication holds.
+
+**Quantifier scope errors:**
+
+"Every student has a favorite professor" is ambiguous. Does each student have their own favorite ($\forall s \, \exists p$), or is there one professor everyone favors ($\exists p \, \forall s$)?
+
+**Ignoring edge cases:**
+
+Always test $x = 0$, $x = 1$, $x = -1$, and boundary conditions when verifying statements about numbers.
+
+## Prerequisites and Connections
+
+**Requires:** Basic understanding of true/false, elementary arithmetic
+
+**Enables:** All of mathematics—proofs, set theory, analysis, probability
+
+**Related:** Boolean algebra (algebraic structure of logic), circuit design (logic gates), programming (conditionals), database queries (logical operators)
+
+---
+
+# Proof Techniques
+
+## Historical Background
+
+Before the 19th century, mathematical proofs relied heavily on geometric intuition. But intuition sometimes fails—Zeno's paradoxes seemed to show motion was impossible, and non-Euclidean geometry proved the parallel postulate could be consistently negated.
+
+The solution was rigorous proof from axioms, with no hand-waving. A proof became a finite sequence of statements, each either an axiom, a previously proven theorem, or following from previous statements by logical rules.
+
+## What Is a Proof?
+
+Think of a proof as navigating a maze: you start with hypotheses (what you know) and need to reach the conclusion (what you want to show). The path is a sequence of logical steps.
+
+Different proof techniques are different navigation strategies:
+- **Direct proof:** Walk straight from start to finish
+- **Contrapositive:** Walk backwards from NOT-finish to NOT-start
+- **Contradiction:** Assume you're already at finish, derive impossibility
+- **Cases:** Split maze into sections, solve each separately
+
+## Direct Proof
+
+::: {.callout-note}
+## Definition: Direct Proof
+
+To prove $P \to Q$:
+
+1. Assume $P$ (hypothesis)
+2. Through logical steps, derive $Q$ (conclusion)
+3. Each step must be justified
+:::
+
+**Structure:**
+
+```
+Proof:
+Assume P.
+[Statement 1] by [justification]
+[Statement 2] follows from statement 1
+...
+Therefore Q. ∎
+```
+
+### Example 1: Simple Direct Proof
+
+**Claim:** If $n$ is even, then $n^2$ is even.
+
+**Proof:**
+
+Assume $n$ is even.
+
+By definition of even, $n = 2k$ for some integer $k$.
+
+Therefore:
+
+$$
+n^2 = (2k)^2 = 4k^2 = 2(2k^2)
+$$
+
+Since $2k^2$ is an integer, $n^2$ has the form $2m$ where $m = 2k^2$.
+
+By definition, $n^2$ is even. ∎
+
+## Proof by Contrapositive
+
+::: {.callout-note}
+## Definition: Proof by Contrapositive
+
+To prove $P \to Q$, instead prove the equivalent statement $\neg Q \to \neg P$.
+:::
+
+Use this when negations are easier to work with than the originals.
+
+### Example 2: Contrapositive Proof
+
+**Claim:** If $n^2$ is even, then $n$ is even.
+
+Direct proof from "$n^2$ even" isn't obvious. But the contrapositive is straightforward.
+
+**Proof:**
+
+We prove the contrapositive: If $n$ is odd, then $n^2$ is odd.
+
+Assume $n$ is odd.
+
+By definition, $n = 2k + 1$ for some integer $k$.
+
+Therefore:
+
+$$
+n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1
+$$
+
+Since $2k^2 + 2k$ is an integer, $n^2 = 2m + 1$ where $m = 2k^2 + 2k$.
+
+By definition, $n^2$ is odd. ∎
+
+## Proof by Contradiction
+
+::: {.callout-note}
+## Definition: Proof by Contradiction
+
+To prove statement $S$:
+
+1. Assume $\neg S$ (opposite of what you want)
+2. Derive a logical contradiction ($R \land \neg R$)
+3. Conclude $S$ must be true
+:::
+
+Use this for proving negatives, irrationality, infinitude, or non-existence.
+
+### Example 3: Classic Contradiction
+
+**Claim:** $\sqrt{2}$ is irrational.
+
+**Proof:**
+
+Assume, for contradiction, that $\sqrt{2}$ is rational.
+
+Then $\sqrt{2} = \frac{a}{b}$ where $a, b \in \mathbb{Z}$, $b \neq 0$, and $\gcd(a,b) = 1$ (lowest terms).
+
+Squaring both sides:
+
+$$
+2 = \frac{a^2}{b^2}
+$$
+
+Multiply by $b^2$:
+
+$$
+2b^2 = a^2
+$$
+
+Therefore $a^2$ is even.
+
+By our earlier result, if $a^2$ is even then $a$ is even.
+
+So $a = 2k$ for some integer $k$.
+
+Substituting:
+
+$$
+2b^2 = (2k)^2 = 4k^2
+$$
+
+Divide by 2:
+
+$$
+b^2 = 2k^2
+$$
+
+Therefore $b^2$ is even, which means $b$ is even.
+
+But now both $a$ and $b$ are even, contradicting $\gcd(a,b) = 1$.
+
+This contradiction shows our assumption was false.
+
+Therefore $\sqrt{2}$ is irrational. ∎
+
+## Proof by Cases
+
+::: {.callout-note}
+## Definition: Proof by Cases
+
+To prove statement $S$:
+
+1. Partition all possibilities into exhaustive cases
+2. Prove $S$ holds in each case separately
+3. Conclude $S$ holds universally
+:::
+
+Use when a natural partition exists (even/odd, positive/negative/zero).
+
+### Example 4: Case Analysis
+
+**Claim:** For all integers $n$, $n(n+1)$ is even.
+
+**Proof:**
+
+Let $n \in \mathbb{Z}$. Either $n$ is even or $n$ is odd.
+
+**Case 1:** $n$ is even.
+
+Then $n = 2k$ for some integer $k$.
+
+So $n(n+1) = 2k(n+1) = 2[k(n+1)]$.
+
+Since $k(n+1)$ is an integer, $n(n+1)$ is even.
+
+**Case 2:** $n$ is odd.
+
+Then $n = 2k+1$ for some integer $k$.
+
+So $n+1 = 2k+2 = 2(k+1)$.
+
+Thus $n(n+1) = (2k+1) \cdot 2(k+1) = 2[(2k+1)(k+1)]$.
+
+Since $(2k+1)(k+1)$ is an integer, $n(n+1)$ is even.
+
+In both cases, $n(n+1)$ is even. ∎
+
+## Choosing a Technique
+
+Try this order:
+
+1. **Direct proof** — Can you see a clear path from hypothesis to conclusion?
+2. **Contrapositive** — Are the negations simpler to work with?
+3. **Contradiction** — Is the statement about non-existence or irrationality?
+4. **Cases** — Does the problem naturally split into scenarios?
+
+For proving $P \to Q$:
+
+**Contrapositive:** Prove $\neg Q \to \neg P$ (still an implication)
+
+**Contradiction:** Assume $P \land \neg Q$, derive impossibility (different structure)
+
+## Verifying Proofs
+
+A good proof:
+- States the claim clearly
+- Defines all variables
+- Uses precise language
+- Justifies each step
+- Handles all cases
+- Reaches the stated conclusion
+- Ends with ∎ or QED
+
+## What to Watch For
+
+**Circular reasoning:**
+
+Using the conclusion in the assumption. "Assume $\sqrt{2}$ is irrational. Then it's irrational. ∎" This proves nothing.
+
+**Proof by example:**
+
+"All primes are odd. Proof: 3, 5, 7 are prime and odd. ∎" Examples don't prove universal statements. (Also, 2 is prime and even.)
+
+**Assuming what you want to prove:**
+
+When proving $A = B$, don't start by assuming $A = B$. Start from definitions or axioms.
+
+**Incomplete case analysis:**
+
+Proving for positive and negative integers but forgetting zero.
+
+**Unjustified steps:**
+
+"$x^2 + 5x + 6 = 0$, therefore $x = -2$ or $x = -3$." Missing steps: factor, apply zero product property.
+
+## Prerequisites and Connections
+
+**Requires:** Logic (implications, quantifiers), basic algebra
+
+**Enables:** All of mathematics—every mathematical result needs proof
+
+**Related:** Axiom systems, formal verification, program correctness
+
+---
+
+# Sets and Operations
+
+## Historical Background
+
+Georg Cantor developed set theory in the 1870s-1890s to understand infinity. His work showed that some infinities are "larger" than others—there are more real numbers than natural numbers.
+
+In 1901, Bertrand Russell discovered a paradox: consider "the set of all sets that don't contain themselves." Does this set contain itself? Either answer leads to contradiction. This crisis led to axiomatic set theory (Zermelo-Fraenkel with Choice).
+
+## Understanding Sets
+
+A set is a collection of objects. Think of it as a container or bag. The objects inside are called elements or members.
+
+**Key properties:**
+- **Unordered:** $\{1, 2, 3\} = \{3, 1, 2\}$
+- **Distinct:** $\{1, 1, 2\} = \{1, 2\}$ (duplicates ignored)
+- **Well-defined:** For any object, we can determine if it's in the set
+
+Visual: A set is like a basket. An element is like an apple in the basket. The set $\{3\}$ is a basket containing one apple (the number 3). The number 3 itself is just an apple, not a basket.
+
+## Formal Definitions
+
+::: {.callout-note}
+## Definition: Set
+
+A **set** is an unordered collection of distinct objects called **elements** or **members**.
+:::
+
+**Notation:**
+- $x \in S$ means "$x$ is an element of $S$"
+- $x \notin S$ means "$x$ is not an element of $S$"
+
+::: {.callout-warning}
+**Critical distinction:** 3 is a number (element). $\{3\}$ is a set containing that number.
+
+- $3 \in \{1, 2, 3\}$ ✓ (3 is listed)
+- $\{3\} \in \{1, 2, 3\}$ ✗ ($\{3\}$ is not listed, only 3 is)
+- $\{3\} \subseteq \{1, 2, 3\}$ ✓ (subset relationship)
+:::
+
+### Specifying Sets
+
+**Roster notation** (list elements):
+
+$$
+A = \{1, 2, 3, 4, 5\}
+$$
+
+**Set-builder notation:**
+
+$$
+A = \{x \in \mathbb{Z} \mid 1 \leq x \leq 5\}
+$$
+
+Read as: "$x$ in integers such that $1 \leq x \leq 5$"
+
+General form: $\{$expression $\mid$ condition$\}$
+
+### Special Sets
+
+**Empty set:** $\emptyset$ or $\{\}$
+
+::: {.callout-important}
+- $|\emptyset| = 0$
+- $\emptyset \subseteq S$ for any set $S$ (vacuously true)
+- $\emptyset \in S$ only if explicitly listed as an element
+- $\emptyset \neq \{\emptyset\}$
+:::
+
+Empty box versus box containing an empty box.
+
+**Standard number sets:**
+
+$$
+\mathbb{N} = \{0, 1, 2, 3, \ldots\}
+$$
+
+$$
+\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}
+$$
+
+$$
+\mathbb{Q} = \left\{\frac{a}{b} \mid a, b \in \mathbb{Z}, b \neq 0\right\}
+$$
+
+$$
+\mathbb{R} \text{ (real numbers)}
+$$
+
+$$
+\mathbb{C} = \{a + bi \mid a, b \in \mathbb{R}\}
+$$
+
+**Hierarchy:**
+
+$$
+\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}
+$$
+
+## Subsets
+
+::: {.callout-note}
+## Definition: Subset
+
+$A \subseteq B$ means every element of $A$ is also in $B$.
+
+**Formally:** $A \subseteq B \Leftrightarrow (\forall x \in A, x \in B)$
+:::
+
+**Proper subset:** $A \subset B$ means $A \subseteq B$ and $A \neq B$
+
+**Properties:**
+- **Reflexive:** $A \subseteq A$
+- **Transitive:** If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$
+- **Antisymmetric:** If $A \subseteq B$ and $B \subseteq A$, then $A = B$
+
+The last property gives us the standard way to prove set equality:
+
+::: {.callout-tip}
+To prove $A = B$:
+1. Show $A \subseteq B$
+2. Show $B \subseteq A$
+:::
+
+## Set Operations
+
+### Union: $A \cup B$
+
+$$
+A \cup B = \{x \mid x \in A \text{ or } x \in B\}
+$$
+
+All elements in $A$ or $B$ (or both).
+
+Example: $\{1, 2, 3\} \cup \{3, 4, 5\} = \{1, 2, 3, 4, 5\}$
+
+### Intersection: $A \cap B$
+
+$$
+A \cap B = \{x \mid x \in A \text{ and } x \in B\}
+$$
+
+Elements in both $A$ and $B$.
+
+Example: $\{1, 2, 3\} \cap \{2, 3, 4\} = \{2, 3\}$
+
+**Disjoint sets:** $A \cap B = \emptyset$
+
+### Difference: $A \setminus B$
+
+$$
+A \setminus B = \{x \mid x \in A \text{ and } x \notin B\}
+$$
+
+Elements in $A$ but not in $B$.
+
+Example: $\{1, 2, 3, 4\} \setminus \{3, 4, 5\} = \{1, 2\}$
+
+Note: $A \setminus B \neq B \setminus A$ in general (not commutative).
+
+### Complement: $A^c$
+
+$$
+A^c = U \setminus A = \{x \in U \mid x \notin A\}
+$$
+
+All elements in the universal set $U$ that are not in $A$. Requires specifying $U$.
+
+### Symmetric Difference: $A \triangle B$
+
+$$
+A \triangle B = (A \setminus B) \cup (B \setminus A)
+$$
+
+Elements in $A$ or $B$ but not both (exclusive or).
+
+Example: $\{1, 2, 3\} \triangle \{2, 3, 4\} = \{1, 4\}$
+
+## Properties of Set Operations
+
+**De Morgan's Laws:**
+
+$$
+(A \cup B)^c = A^c \cap B^c
+$$
+
+$$
+(A \cap B)^c = A^c \cup B^c
+$$
+
+**Commutative:**
+
+$$
+A \cup B = B \cup A
+$$
+
+$$
+A \cap B = B \cap A
+$$
+
+**Associative:**
+
+$$
+A \cup (B \cup C) = (A \cup B) \cup C
+$$
+
+$$
+A \cap (B \cap C) = (A \cap B) \cap C
+$$
+
+**Distributive:**
+
+$$
+A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+$$
+
+$$
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+$$
+
+## Cartesian Products
+
+::: {.callout-note}
+## Definition: Cartesian Product
+
+$$
+A \times B = \{(a, b) \mid a \in A \text{ and } b \in B\}
+$$
+
+The set of all **ordered pairs** with first element from $A$, second from $B$.
+:::
+
+**Important:** $(a, b) \neq (b, a)$ unless $a = b$ (order matters)
+
+**Cardinality:** $|A \times B| = |A| \cdot |B|$
+
+**Example:**
+
+$$
+\{1, 2\} \times \{a, b\} = \{(1,a), (1,b), (2,a), (2,b)\}
+$$
+
+**Higher dimensions:**
+
+$$
+\mathbb{R}^2 = \mathbb{R} \times \mathbb{R} = \{(x, y) \mid x, y \in \mathbb{R}\}
+$$
+
+The plane. Similarly $\mathbb{R}^3$ is 3D space, $\mathbb{R}^n$ is $n$-dimensional space.
+
+## Power Sets
+
+::: {.callout-note}
+## Definition: Power Set
+
+$$
+\mathcal{P}(A) = \{S \mid S \subseteq A\}
+$$
+
+The set of **all subsets** of $A$.
+:::
+
+Elements of $\mathcal{P}(A)$ are sets themselves.
+
+::: {.callout-important}
+If $|A| = n$, then $|\mathcal{P}(A)| = 2^n$
+:::
+
+**Why $2^n$?** For each element: include it in the subset or don't (2 choices). With $n$ elements: $2 \times 2 \times \cdots \times 2 = 2^n$ total subsets.
+
+### Example 1: $A = \{1, 2\}$
+
+$$
+\mathcal{P}(\{1, 2\}) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}
+$$
+
+4 subsets total ($2^2 = 4$).
+
+### Example 2: $A = \{a, b, c\}$
+
+$$
+\mathcal{P}(\{a, b, c\}) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a,b\}, \{a,c\}, \{b,c\}, \{a,b,c\}\}
+$$
+
+8 subsets total ($2^3 = 8$).
+
+### Example 3: $A = \emptyset$
+
+$$
+\mathcal{P}(\emptyset) = \{\emptyset\}
+$$
+
+Not empty! Contains one element (the empty set itself). $|\mathcal{P}(\emptyset)| = 2^0 = 1$.
+
+**Power set growth:**
+
+| $|A|$ | $|\mathcal{P}(A)|$ |
+|-------|---------------------|
+| 0     | 1                   |
+| 1     | 2                   |
+| 2     | 4                   |
+| 3     | 8                   |
+| 10    | 1,024               |
+| 20    | 1,048,576           |
+
+Exponential explosion makes searching all subsets intractable for large sets.
+
+## Examples
+
+### Example 1: Element vs. Subset
+
+Given $S = \{1, 2, \{3\}, \emptyset\}$ (4 elements: numbers 1, 2, the set $\{3\}$, and empty set):
+
+- $1 \in S$ ✓
+- $\{1\} \in S$ ✗ (only 1 is listed, not $\{1\}$)
+- $\{1\} \subseteq S$ ✓ (element 1 is in $S$)
+- $3 \in S$ ✗ (3 is not listed, only $\{3\}$ is)
+- $\{3\} \in S$ ✓ (explicitly listed)
+- $\emptyset \in S$ ✓ (explicitly listed as element)
+- $\emptyset \subseteq S$ ✓ (vacuously true for any set)
+
+### Example 2: Set Operations
+
+Let $A = \{1, 2, 3, 4\}$, $B = \{3, 4, 5, 6\}$
+
+- $A \cup B = \{1, 2, 3, 4, 5, 6\}$
+- $A \cap B = \{3, 4\}$
+- $A \setminus B = \{1, 2\}$
+- $B \setminus A = \{5, 6\}$
+- $A \triangle B = \{1, 2, 5, 6\}$
+
+### Example 3: Proving Set Equality
+
+**Claim:** $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+
+**Proof:**
+
+($\subseteq$) Let $x \in A \cap (B \cup C)$.
+
+Then $x \in A$ and $x \in (B \cup C)$.
+
+So $x \in A$ and ($x \in B$ or $x \in C$).
+
+Case 1: $x \in B$. Then $x \in A$ and $x \in B$, so $x \in A \cap B$, thus $x \in (A \cap B) \cup (A \cap C)$.
+
+Case 2: $x \in C$. Then $x \in A$ and $x \in C$, so $x \in A \cap C$, thus $x \in (A \cap B) \cup (A \cap C)$.
+
+Therefore $A \cap (B \cup C) \subseteq (A \cap B) \cup (A \cap C)$.
+
+($\supseteq$) Let $x \in (A \cap B) \cup (A \cap C)$.
+
+Then $x \in A \cap B$ or $x \in A \cap C$.
+
+Case 1: $x \in A \cap B$. Then $x \in A$ and $x \in B$, so $x \in B \cup C$, thus $x \in A \cap (B \cup C)$.
+
+Case 2: $x \in A \cap C$. Then $x \in A$ and $x \in C$, so $x \in B \cup C$, thus $x \in A \cap (B \cup C)$.
+
+Therefore $(A \cap B) \cup (A \cap C) \subseteq A \cap (B \cup C)$.
+
+Since both inclusions hold, $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$. ∎
+
+### Example 4: Non-Example
+
+"The set of all sets" is **not a valid set** in standard set theory. It leads to Russell's paradox.
+
+Let $R = \{S \mid S \notin S\}$ (set of all sets not containing themselves).
+
+Is $R \in R$?
+
+- If $R \in R$, then by definition $R \notin R$ (contradiction)
+- If $R \notin R$, then by definition $R \in R$ (contradiction)
+
+Resolution: can't form "set of all sets" (requires proper classes).
+
+## Typical Errors
+
+**Confusing element and set:**
+
+Wrong: $3 \subseteq \{1, 2, 3\}$
+
+3 is a number, not a set. Can't use $\subseteq$ with elements.
+
+Right: $3 \in \{1, 2, 3\}$ or $\{3\} \subseteq \{1, 2, 3\}$
+
+**Empty set confusion:**
+
+$\emptyset \neq \{\emptyset\}$
+
+- $|\emptyset| = 0$ (no elements)
+- $|\{\emptyset\}| = 1$ (one element: the empty set)
+
+**Set operation results:**
+
+Wrong: $\{1, 2\} \cap \{2, 3\} = 2$
+
+Results of set operations are always sets.
+
+Right: $\{1, 2\} \cap \{2, 3\} = \{2\}$
+
+**Forgetting empty set in power set:**
+
+$\mathcal{P}(\{a, b\})$ includes both $\emptyset$ and $\{a, b\}$ itself.
+
+## Building Blocks
+
+**Requires:** Logic (quantifiers for defining operations), basic notation
+
+**Enables:** Relations, functions, vector spaces, topology, measure theory, probability
+
+**Related:** Category theory, type theory, logic
+
+---
+
+# Relations and Functions
+
+## Relations
+
+::: {.callout-note}
+## Definition: Relation
+
+A **relation** $R$ from $A$ to $B$ is a subset of $A \times B$.
+
+$$
+R \subseteq A \times B
+$$
+:::
+
+If $(a, b) \in R$, we write $a \, R \, b$.
+
+**Example:** Less-than on integers
+
+$$
+A = B = \{1, 2, 3, 4\}
+$$
+
+$$
+R = \{(1,2), (1,3), (1,4), (2,3), (2,4), (3,4)\}
+$$
+
+This represents: $1 < 2$, $1 < 3$, $1 < 4$, $2 < 3$, $2 < 4$, $3 < 4$
+
+### Properties of Binary Relations
+
+For a relation $R \subseteq A \times A$:
+
+**Reflexive:** $\forall a \in A, (a, a) \in R$
+
+Every element related to itself.
+
+**Symmetric:** $\forall a, b \in A$, if $(a, b) \in R$ then $(b, a) \in R$
+
+If $a$ relates to $b$, then $b$ relates to $a$.
+
+**Transitive:** $\forall a, b, c \in A$, if $(a, b) \in R$ and $(b, c) \in R$, then $(a, c) \in R$
+
+Chaining works.
+
+**Antisymmetric:** $\forall a, b \in A$, if $(a, b) \in R$ and $(b, a) \in R$, then $a = b$
+
+Both directions only when equal.
+
+### Equivalence Relations
+
+::: {.callout-note}
+## Definition: Equivalence Relation
+
+A relation is an **equivalence relation** if it is:
+1. Reflexive
+2. Symmetric
+3. Transitive
+:::
+
+**Examples:**
+- Equality ($=$)
+- Congruence mod $n$: $a \equiv b \pmod{n}$ if $n$ divides $(a - b)$
+- Similarity of matrices
+
+## Functions
+
+::: {.callout-note}
+## Definition: Function
+
+A **function** $f: A \to B$ assigns to each element of $A$ exactly one element of $B$.
+
+**Components:**
+- **Domain:** $A$
+- **Codomain:** $B$
+- **Range:** $\{f(a) \mid a \in A\} \subseteq B$
+:::
+
+Each input maps to **exactly one** output.
+
+### Types of Functions
+
+**Injective (one-to-one):**
+
+Different inputs produce different outputs.
+
+$$
+\forall x_1, x_2 \in A, \text{ if } f(x_1) = f(x_2) \text{ then } x_1 = x_2
+$$
+
+Equivalently (contrapositive): If $x_1 \neq x_2$, then $f(x_1) \neq f(x_2)$
+
+**Surjective (onto):**
+
+Every element of codomain is hit.
+
+$$
+\forall b \in B, \exists a \in A \text{ such that } f(a) = b
+$$
+
+Equivalently: Range = Codomain
+
+**Bijective:**
+
+Both injective and surjective. Perfect one-to-one pairing.
+
+::: {.callout-important}
+Only bijective functions have inverses.
+:::
+
+## Examples
+
+### Example 1: Injective Function
+
+$$
+f: \mathbb{R} \to \mathbb{R}, \quad f(x) = 2x + 3
+$$
+
+**Injective?** YES
+
+If $f(x_1) = f(x_2)$, then $2x_1 + 3 = 2x_2 + 3$, so $2x_1 = 2x_2$, thus $x_1 = x_2$.
+
+### Example 2: Not Injective
+
+$$
+g: \mathbb{R} \to \mathbb{R}, \quad g(x) = x^2
+$$
+
+**Injective?** NO
+
+$g(2) = 4 = g(-2)$, but $2 \neq -2$.
+
+### Example 3: Surjective Function
+
+$$
+f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^3
+$$
+
+**Surjective?** YES
+
+For any $y \in \mathbb{R}$, choose $x = \sqrt[3]{y}$, then $f(x) = y$.
+
+### Example 4: Not Surjective
+
+$$
+g: \mathbb{R} \to \mathbb{R}, \quad g(x) = x^2
+$$
+
+**Surjective?** NO
+
+Range is $[0, \infty)$, which doesn't equal codomain $\mathbb{R}$. For $y = -1$, no real $x$ satisfies $x^2 = -1$.
+
+### Example 5: Bijective Function
+
+$$
+h: [0, \infty) \to [0, \infty), \quad h(x) = x^2
+$$
+
+**Injective?** YES (for $x_1, x_2 \geq 0$, if $x_1^2 = x_2^2$ then $x_1 = x_2$)
+
+**Surjective?** YES (for any $y \geq 0$, choose $x = \sqrt{y}$)
+
+**Therefore bijective.** Inverse: $h^{-1}(y) = \sqrt{y}$
+
+### Example 6: Surjectivity Depends on Codomain
+
+$$
+f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2
+$$
+
+NOT surjective (as shown above).
+
+$$
+h: \mathbb{R} \to [0, \infty), \quad h(x) = x^2
+$$
+
+IS surjective (changed codomain to match range).
+
+## Function Composition
+
+$$
+(g \circ f)(x) = g(f(x))
+$$
+
+Apply $f$ first, then $g$.
+
+**Example:**
+
+$$
+f(x) = x + 1, \quad g(x) = x^2
+$$
+
+$$
+(g \circ f)(x) = g(x + 1) = (x + 1)^2
+$$
+
+$$
+(f \circ g)(x) = f(x^2) = x^2 + 1
+$$
+
+Different functions! Composition is not commutative: $g \circ f \neq f \circ g$ in general.
+
+**Composition preserves properties:**
+- $f, g$ injective $\Rightarrow$ $g \circ f$ injective
+- $f, g$ surjective $\Rightarrow$ $g \circ f$ surjective
+- $f, g$ bijective $\Rightarrow$ $g \circ f$ bijective
+
+## Common Errors
+
+**Thinking relation = function:**
+
+Relations can have one input mapping to multiple outputs. Functions must have exactly one output per input.
+
+**Claiming function not surjective without specifying codomain:**
+
+Always state the codomain explicitly. $f(x) = x^2$ is surjective onto $[0, \infty)$ but not onto $\mathbb{R}$.
+
+**Confusing injective with surjective:**
+
+Injective: different inputs → different outputs
+
+Surjective: all outputs are hit
+
+Different concepts!
+
+---
+
+# Cardinality
+
+## Understanding Infinity
+
+Before Cantor, infinity was treated as a single concept. Cantor asked: can we compare sizes of infinite sets? Are there more real numbers than natural numbers?
+
+His shocking answer: yes, some infinities are strictly larger than others.
+
+## Comparing Set Sizes
+
+For finite sets, size means counting. For infinite sets, we can't "count to infinity," but we can establish pairings.
+
+::: {.callout-note}
+## Definition: Same Cardinality
+
+Sets $A$ and $B$ have the **same cardinality** (written $|A| = |B|$) if there exists a bijection $f: A \to B$.
+:::
+
+Think of it as a perfect pairing—each element of $A$ pairs with exactly one element of $B$, and vice versa.
+
+## Countably Infinite Sets
+
+::: {.callout-note}
+## Definition: Countably Infinite
+
+A set is **countably infinite** if $|A| = |\mathbb{N}|$.
+
+Equivalently: elements can be listed as $a_0, a_1, a_2, a_3, \ldots$
+:::
+
+### Example 1: Even Natural Numbers
+
+**Claim:** $|\{0, 2, 4, 6, \ldots\}| = |\mathbb{N}|$
+
+Define $f: \mathbb{N} \to \{\text{evens}\}$ by $f(n) = 2n$:
+
+\begin{align}
+f(0) &= 0 \\
+f(1) &= 2 \\
+f(2) &= 4 \\
+f(3) &= 6
+\end{align}
+
+**Injective:** If $2n_1 = 2n_2$, then $n_1 = n_2$ ✓
+
+**Surjective:** For any even $2k$, choose $n = k$, then $f(n) = 2k$ ✓
+
+Therefore bijection exists. Even though evens are a proper subset of naturals, they have the same cardinality!
+
+### Example 2: Integers
+
+**Claim:** $|\mathbb{Z}| = |\mathbb{N}|$
+
+List integers by alternating positive and negative:
+
+$$
+0, 1, -1, 2, -2, 3, -3, 4, -4, \ldots
+$$
+
+Define:
+
+$$
+f(n) = \begin{cases}
+0 & n = 0 \\
+n/2 & n \text{ even and } n > 0 \\
+-(n-1)/2 & n \text{ odd}
+\end{cases}
+$$
+
+Each integer appears exactly once—bijection exists.
+
+### Example 3: Rational Numbers
+
+**Claim:** $|\mathbb{Q}| = |\mathbb{N}|$
+
+Arrange positive rationals in a grid:
+
+```
+1/1  1/2  1/3  1/4  1/5  ...
+2/1  2/2  2/3  2/4  2/5  ...
+3/1  3/2  3/3  3/4  3/5  ...
+4/1  4/2  4/3  4/4  4/5  ...
+```
+
+"Snake" through diagonally, skipping duplicates (like $2/2 = 1/1$):
+
+$$
+1/1 \to 1/2 \to 2/1 \to 3/1 \to 2/2(\text{skip}) \to 1/3 \to 1/4 \to 2/3 \to \ldots
+$$
+
+This gives a listing of all positive rationals. Include negative rationals and zero (like we did for integers), get $|\mathbb{Q}| = |\mathbb{N}|$.
+
+Rationals are countable despite being "everywhere" (dense in the reals).
+
+## Uncountably Infinite Sets
+
+::: {.callout-note}
+## Definition: Uncountable
+
+A set is **uncountable** if it is infinite but NOT countably infinite.
+
+Cannot be put in bijection with $\mathbb{N}$.
+:::
+
+### Cantor's Diagonal Argument
+
+**Theorem:** $\mathbb{R}$ is uncountable ($|\mathbb{R}| > |\mathbb{N}|$)
+
+**Proof:**
+
+Assume $\mathbb{R}$ is countable. Then we can list all reals in $[0,1)$:
+
+\begin{align}
+r_1 &= 0.d_{11}d_{12}d_{13}d_{14}\ldots \\
+r_2 &= 0.d_{21}d_{22}d_{23}d_{24}\ldots \\
+r_3 &= 0.d_{31}d_{32}d_{33}d_{34}\ldots \\
+r_4 &= 0.d_{41}d_{42}d_{43}d_{44}\ldots
+\end{align}
+
+Construct new number $x = 0.x_1x_2x_3x_4\ldots$ where $x_n \neq d_{nn}$ and $x_n \neq 0, 9$.
+
+**Example:**
+
+\begin{align}
+r_1 &= 0.\mathbf{5}123456\ldots \\
+r_2 &= 0.3\mathbf{9}87654\ldots \\
+r_3 &= 0.14\mathbf{1}5926\ldots \\
+r_4 &= 0.271\mathbf{8}281\ldots
+\end{align}
+
+Diagonal: 5, 9, 1, 8, ...
+
+Choose: $x = 0.6129\ldots$ (each digit different from diagonal)
+
+Then:
+- $x \neq r_1$ (differ in position 1: 6 vs 5)
+- $x \neq r_2$ (differ in position 2: 1 vs 9)
+- $x \neq r_3$ (differ in position 3: 2 vs 1)
+- $x \neq r_4$ (differ in position 4: 9 vs 8)
+
+So $x \in [0,1)$ but $x$ is not in our "complete" list! Contradiction.
+
+Therefore $\mathbb{R}$ cannot be listed—it's uncountable. ∎
+
+**Why avoid 0 and 9?** To prevent issues like $0.999\ldots = 1.000\ldots$
+
+## Hierarchy of Infinities
+
+**Cantor's Theorem:** For any set $A$, $|A| < |\mathcal{P}(A)|$
+
+Power set is always strictly larger.
+
+**Consequence:**
+
+$$
+|\mathbb{N}| = \aleph_0 < |\mathbb{R}| = 2^{\aleph_0} = c < |\mathcal{P}(\mathbb{R})| = 2^c < |\mathcal{P}(\mathcal{P}(\mathbb{R}))| = 2^{2^c} < \cdots
+$$
+
+Infinite hierarchy of infinities—no "largest" infinity.
+
+### Summary Table
+
+| Set | Cardinality | Type |
+|-----|-------------|------|
+| $\emptyset$ | 0 | Finite |
+| $\{1,2,3\}$ | 3 | Finite |
+| $\mathbb{N}$ | $\aleph_0$ | Countably infinite |
+| $\mathbb{Z}$ | $\aleph_0$ | Countably infinite |
+| $\mathbb{Q}$ | $\aleph_0$ | Countably infinite |
+| $\mathbb{R}$ | $c = 2^{\aleph_0}$ | Uncountably infinite |
+| $[0,1]$ | $c$ | Uncountably infinite |
+| $\mathcal{P}(\mathbb{N})$ | $c$ | Uncountably infinite |
+| $\mathcal{P}(\mathbb{R})$ | $2^c$ | Larger infinity |
+
+## Examples
+
+### Example 1: Interval [0,1]
+
+**Claim:** $|[0,1]| = |\mathbb{R}|$
+
+Seems impossible—finite interval same size as entire real line?
+
+Define $f: (0,1) \to \mathbb{R}$ by:
+
+$$
+f(x) = \tan\left(\pi\left(x - \frac{1}{2}\right)\right)
+$$
+
+This is a bijection mapping the open interval onto all reals. Similar construction works for $[0,1]$.
+
+### Example 2: Power Set of Naturals
+
+**Claim:** $|\mathcal{P}(\mathbb{N})| = |\mathbb{R}|$
+
+Each subset of $\mathbb{N}$ corresponds to an infinite binary sequence. These can be mapped to real numbers in $[0,1]$ via binary representation. With care about duplicates, this gives a bijection.
+
+### Example 3: Non-Example
+
+Can't use diagonal argument on integers because integers aren't in decimal expansion form. The argument specifically applies to reals.
+
+## What to Watch For
+
+**Thinking "larger" means what it does for finite sets:**
+
+Rationals are denser than integers (between any two rationals, there's another), yet $|\mathbb{Q}| = |\mathbb{Z}|$.
+
+**Assuming proper subset must be smaller:**
+
+Evens are half the naturals in finite sense, but $|\{\text{evens}\}| = |\mathbb{N}|$ (for infinite sets).
+
+**Misapplying diagonal argument:**
+
+Only works for objects with infinite expansions (like reals in decimal form). Can't use it on integers.
+
+**Thinking all infinities are equal:**
+
+$|\mathbb{N}| < |\mathbb{R}| < |\mathcal{P}(\mathbb{R})| < \cdots$
+
+Multiple distinct infinite cardinalities exist.
+
+**Confusing countable with finite:**
+
+"Countable" means finite OR countably infinite. Both $\{1,2,3\}$ and $\mathbb{N}$ are countable.
+
+## Prerequisites and Connections
+
+**Requires:** Set theory (bijections), logic (proof by contradiction)
+
+**Enables:** Measure theory, topology, analysis, learning theory
+
+**Related:** Cardinal arithmetic, ordinal numbers, continuum hypothesis
+
+# Mathematical Induction 
+
+## coming soon
+
+# Applications to Machine Learning
+
+Now that we have foundations in logic, proof, and set theory, we can see how these concepts underpin machine learning.
+
+## Training and Test Sets
+
+Data is a set of input-output pairs:
+
+$$
+D = \{(x_i, y_i)\}_{i=1}^n \subset X \times Y
+$$
+
+where $X$ is the input space and $Y$ is the output space.
+
+**Training set:** $D_{\text{train}} \subset X \times Y$
+
+**Test set:** $D_{\text{test}} \subset X \times Y$
+
+**Requirement:** $D_{\text{train}} \cap D_{\text{test}} = \emptyset$ (disjoint)
+
+Without disjoint sets, we'd test on data we trained on—overly optimistic performance estimates.
+
+## Hypothesis Classes
+
+A learning algorithm searches over a **hypothesis class**:
+
+$$
+\mathcal{H} = \{h: X \to Y \mid h \text{ satisfies constraints}\}
+$$
+
+**Cardinality affects learnability:**
+
+**Finite hypothesis class:**
+
+$$
+\mathcal{H} = \{h_1, h_2, \ldots, h_n\}
+$$
+
+Can exhaustively search. Always PAC-learnable with enough samples.
+
+**Countably infinite:**
+
+$$
+\mathcal{H} = \text{all polynomials with rational coefficients}
+$$
+
+$|\mathcal{H}| = \aleph_0$. PAC-learnable if VC dimension is finite.
+
+**Uncountably infinite:**
+
+$$
+\mathcal{H} = \text{all continuous functions } \mathbb{R}^d \to \mathbb{R}
+$$
+
+$|\mathcal{H}| = 2^c$ (very large). Requires regularization or other constraints for practical learning.
+
+## Feature Spaces
+
+**Discrete (finite):**
+
+$$
+X = \{0,1\}^n
+$$
+
+Binary features. $|X| = 2^n$ (exponentially large but finite).
+
+**Continuous (uncountable):**
+
+$$
+X = \mathbb{R}^n
+$$
+
+$|X| = c$ (continuum). Requires measure-theoretic probability—we can't assign probability to every individual point.
+
+## Decision Trees and Logic
+
+Internal nodes in decision trees are logical predicates:
+
+"If (feature1 > 5) AND (feature2 < 10) then predict class A"
+
+This is $P \land Q \to R$ structure from propositional logic.
+
+## Convergence and Quantifiers
+
+Proving convergence of gradient descent uses quantifiers:
+
+"For all $\varepsilon > 0$, there exists iteration $N$ such that for all $n > N$, $|f(x_n) - f^*| < \varepsilon$"
+
+$$
+\forall \varepsilon > 0, \exists N, \forall n > N, (|f(x_n) - f^*| < \varepsilon)
+$$
+
+Order of quantifiers matters! The $N$ depends on $\varepsilon$.
+
+## PAC Learning and Quantifiers
+
+Probably Approximately Correct (PAC) learning definition:
+
+"For all $\varepsilon > 0$ and $\delta > 0$, there exists $m$ such that for all distributions and target functions, with probability at least $1 - \delta$ over samples of size $m$, the learned hypothesis has error at most $\varepsilon$"
+
+$$
+\forall \varepsilon, \delta > 0, \exists m, \forall D, f, P_{|S|=m}[\text{error}(h) \leq \varepsilon] \geq 1 - \delta
+$$
+
+This is a complex nested quantifier statement—understanding quantifier order is essential.
+
+## Function Spaces
+
+Neural networks approximate functions in continuous function spaces:
+
+$$
+C([0,1]^d) = \{\text{continuous functions } [0,1]^d \to \mathbb{R}\}
+$$
+
+This space has cardinality $|C([0,1]^d)| = 2^c$ (uncountably infinite).
+
+Universal approximation theorems show neural networks can approximate any function in $C([0,1]^d)$ arbitrarily well (with enough neurons). But we can never achieve actual surjectivity—the set of representable functions is a dense subset, not the whole space.
+
+## Proofs in Learning Theory
+
+Many key results require proof:
+
+**Generalization bounds:** Prove that training error is close to test error
+
+**Convergence rates:** Prove gradient descent converges, and how fast
+
+**Approximation theorems:** Prove certain function classes can approximate others
+
+All use techniques from this document: direct proof, contrapositive, contradiction, cases.
+
+---
+
+# Practice Problems
+
+## Problem Set 1: Logic
+
+**Problem 1:** Construct truth table for $(P \to Q) \land (Q \to R)$.
+
+**Problem 2:** Negate the following statement: $\forall x \in \mathbb{R}, \exists y \in \mathbb{R}, (x + y > 0)$
+
+**Problem 3:** Determine if the following are logically equivalent:
+- $P \to (Q \lor R)$
+- $(P \to Q) \lor (P \to R)$
+
+**Problem 4:** State the contrapositive, converse, and inverse of: "If $n$ is divisible by 4, then $n$ is even."
+
+## Problem Set 2: Proofs
+
+**Problem 5:** Prove: For all integers $n$, if $n^3$ is even then $n$ is even.
+
+**Problem 6:** Prove: $\sqrt{3}$ is irrational.
+
+**Problem 7:** Prove: For all integers $n$, $n^2 - n$ is even.
+
+**Problem 8:** Prove or disprove: For all real numbers $x$ and $y$, if $xy = 0$ then $x = 0$ or $y = 0$.
+
+## Problem Set 3: Sets
+
+**Problem 9:** Let $A = \{1,2,3\}$ and $B = \{2,3,4\}$. Compute:
+- $A \triangle B$
+- $\mathcal{P}(A \cap B)$
+
+**Problem 10:** Prove: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+
+**Problem 11:** List all elements of $\mathcal{P}(\{a, b, c\})$.
+
+**Problem 12:** Given $S = \{1, 2, \{3\}, \emptyset\}$, determine true or false:
+- $2 \in S$
+- $\{2\} \in S$
+- $\{2\} \subseteq S$
+- $\emptyset \in S$
+- $\emptyset \subseteq S$
+
+## Problem Set 4: Functions
+
+**Problem 13:** For $f: \mathbb{R} \to \mathbb{R}, f(x) = x^3 - x$, determine:
+- Is $f$ injective?
+- Is $f$ surjective?
+- What domain/codomain restrictions make $f$ bijective?
+
+**Problem 14:** Prove: The composition of two injective functions is injective.
+
+**Problem 15:** Find a bijection between $(0,1)$ and $(0, \infty)$.
+
+**Problem 16:** Give an example of functions $f, g$ where $g \circ f$ is injective but $g$ is not injective.
+
+## Problem Set 5: Cardinality
+
+**Problem 17:** Prove: $|\mathbb{N} \times \mathbb{N}| = |\mathbb{N}|$
+
+(Hint: Use the pairing function or diagonal argument for listing)
+
+**Problem 18:** Prove: $|[0,1]| = |(0,1)|$
+
+(Open vs closed interval)
+
+**Problem 19:** Explain why $|\mathcal{P}(\mathbb{N})| = |\mathbb{R}|$
+
+**Problem 20:** Which is larger: $|\mathbb{Q} \times \mathbb{Q}|$ or $|\mathbb{Q}|$? Justify.
