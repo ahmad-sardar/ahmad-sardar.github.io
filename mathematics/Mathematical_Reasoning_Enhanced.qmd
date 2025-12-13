@@ -1671,7 +1671,7 @@ $$
 $$
 
 *Proof:*
-$$
+
 \begin{align}
 \sum_{i=1}^{k+1} i &= \left(\sum_{i=1}^k i\right) + (k+1) \\
 &= \frac{k(k+1)}{2} + (k+1) \quad \text{[by inductive hypothesis]} \\
@@ -1679,7 +1679,6 @@ $$
 &= \frac{k(k+1) + 2(k+1)}{2} \\
 &= \frac{(k+1)(k+2)}{2}
 \end{align}
-$$
 
 Therefore $P(k+1)$ holds.
 
@@ -1721,21 +1720,18 @@ $$
 $$
 
 *Proof:* Starting with the left side of what we want to prove:
-$$
+
 \begin{align}
 \sum_{i=1}^{k+1} (2i - 1) &= \left[\sum_{i=1}^k (2i - 1)\right] + (2(k+1) - 1) \\
 \end{align}
-$$
 
 We separated out the last term $(i = k+1)$ from the sum. Now we can apply our inductive hypothesis to the first part:
 
-$$
 \begin{align}
 &= k^2 + (2k + 2 - 1) \quad \text{[using inductive hypothesis]} \\
 &= k^2 + 2k + 1 \\
 &= (k + 1)^2 \quad \text{[factor as perfect square]}
 \end{align}
-$$
 
 This is exactly what we needed to prove! Therefore $P(k+1)$ holds.
 
@@ -1769,7 +1765,6 @@ This means: $7^k - 1 = 6m$ for some integer $m$, or equivalently, $7^k = 6m + 1$
 
 *Proof:* We need to show $7^{k+1} - 1$ is divisible by 6.
 
-$$
 \begin{align}
 7^{k+1} - 1 &= 7 \cdot 7^k - 1 \\
 &= 7(6m + 1) - 1 \quad \text{[substitute from inductive hypothesis]} \\
@@ -1777,7 +1772,6 @@ $$
 &= 42m + 6 \\
 &= 6(7m + 1)
 \end{align}
-$$
 
 Since $7m + 1$ is an integer, we've expressed $7^{k+1} - 1$ as 6 times an integer. Therefore $6 | (7^{k+1} - 1)$.
 
@@ -2432,21 +2426,19 @@ Since $32 > 25$, the base case holds. ✓
 *Goal:* Prove $2^{k+1} > (k+1)^2$.
 
 *Proof:*
-$$
+
 \begin{align}
 2^{k+1} &= 2 \cdot 2^k \\
 &> 2k^2 \quad \text{[by inductive hypothesis]}
 \end{align}
-$$
 
 Now we need to show $2k^2 > (k+1)^2$ for $k \geq 5$.
 
 Expanding:
-$$
+
 \begin{align}
 (k+1)^2 &= k^2 + 2k + 1
 \end{align}
-$$
 
 We want to show:
 $$
@@ -2501,7 +2493,7 @@ $$
 $$
 
 *Proof:*
-$$
+
 \begin{align}
 \sum_{i=0}^{k+1} r^i &= \left(\sum_{i=0}^k r^i\right) + r^{k+1} \\
 &= \frac{r^{k+1} - 1}{r - 1} + r^{k+1} \quad \text{[inductive hypothesis]} \\
@@ -2509,7 +2501,6 @@ $$
 &= \frac{r^{k+1} - 1 + r^{k+2} - r^{k+1}}{r - 1} \\
 &= \frac{r^{k+2} - 1}{r - 1}
 \end{align}
-$$
 
 This is exactly what we needed to prove.
 
@@ -2534,7 +2525,7 @@ In particular, we have $F_{k-1} < 2^{k-1}$ and $F_k < 2^k$.
 *Goal:* Prove $F_{k+1} < 2^{k+1}$.
 
 *Proof:*
-$$
+
 \begin{align}
 F_{k+1} &= F_k + F_{k-1} \quad \text{[Fibonacci recurrence]} \\
 &< 2^k + 2^{k-1} \quad \text{[by inductive hypothesis]} \\
@@ -2544,7 +2535,6 @@ F_{k+1} &= F_k + F_{k-1} \quad \text{[Fibonacci recurrence]} \\
 &= 2^2 \cdot 2^{k-1} \\
 &= 2^{k+1}
 \end{align}
-$$
 
 Therefore $F_{k+1} < 2^{k+1}$.
 
