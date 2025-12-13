@@ -36,3 +36,4 @@ format:
     number-sections: true
     number-offset: -1
     embed-resources: true
+    include-in-header: _includes/goatcounter.html

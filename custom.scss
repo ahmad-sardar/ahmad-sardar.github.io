@@ -187,7 +187,8 @@ a {
   font-weight: 500;
   position: relative;
   
-  &::after {
+  // Don't apply underline animation to external links (they have their own ::after for icon)
+  &:not(.external)::after {
     content: '';
     position: absolute;
     width: 0;
@@ -201,10 +202,35 @@ a {
   &:hover {
     color: $blue-bright;
     
-    &::after {
+    &:not(.external)::after {
       width: 100%;
     }
   }
+}
+
+// Remove Quarto's external link icon (chain symbol) completely - multiple selectors for maximum coverage
+a.external::after,
+a[href^="http"]::after,
+a[href^="https"]::after,
+a[href^="mailto"]::after,
+a.external:hover::after,
+a[href^="http"]:hover::after,
+a[href^="https"]:hover::after,
+a[href^="mailto"]:hover::after {
+  display: none !important;
+  visibility: hidden !important;
+  content: '' !important;
+  background-image: none !important;
+  background-size: none !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
 }
 
 // Math rendering
@@ -639,7 +665,14 @@ main {
   h2 {
     font-size: 1.5rem;
     margin-top: $spacing-xl;
-    margin-bottom: $spacing-md;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 2px solid $border-medium;
+    color: $blue-accent;
+
+    &:not(:has(a)) {
+      cursor: default;
+    }
   }
   
   h3 {
@@ -690,12 +723,21 @@ main {
   }
   
   a {
-    color: #000080;
+    color: $blue-accent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color $transition-base;
     
-    &::after {
-      display: none;
+    &:hover {
+      color: $blue-light;
+      text-decoration: underline;
+      
+      &::after {
+        display: none; // Remove underline on hover for h2 links
+      }
     }
   }
+
   
   .navbar,
   #quarto-sidebar,
@@ -720,4 +762,16 @@ main {
     }
   }
 }
+
+// Final override to remove ALL external link icons - must be at the end to override everything
+a.external::after,
+a[href^="http"]::after,
+a[href^="https"]::after,
+a[href^="mailto"]::after {
+  all: unset !important;
+  display: none !important;
+  content: none !important;
+  background-image: none !important;
+}
+
 

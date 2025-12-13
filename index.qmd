@@ -7,12 +7,12 @@ Here I publicly share my notes on mathematics and machine learning, built from f
 
 Machine learning is examined through two complementary theoretical frameworks:
 
-1. **Statistical Learning Theory**, grounded in the principles developed by Vapnik.
-2. **Probabilistic Modeling**, informed by Murphy’s treatment.
+1. Statistical Learning Theory, grounded in the principles developed by Vapnik.
+2. Probabilistic Modeling, informed by Murphy’s treatment.
 
 Mathematics and machine learning are developed in parallel: the mathematical sections focus on pure concepts, whereas the machine learning sections integrate those concepts into formal learning frameworks.
 
-## Mathematics
+## [Mathematics](mathematics/index.qmd)
 
 Mathematical foundations are organized by domain. Each concept is introduced systematically, beginning with motivation and context, followed by intuitive visualizations, precise definitions, key properties, and principal theorems. Computational methods accompany the theory, with worked examples spanning basic cases through edge scenarios and explicit discussions of common pitfalls.
 
@@ -20,7 +20,7 @@ Topics reference their prerequisites and the ideas they enable, forming a cohere
 
 Not all topics may relate to ML. As mentioned earlier we treat maths as its own discipline, independent of application.
 
-## Machine Learning Algorithms
+## [Machine Learning Algorithms](machine_learning/index.qmd)
 
 These notes present machine learning algorithms from first principles. Each algorithm is developed in five layers: historical context and motivation, an intuitive explanation without notation, concrete algebraic computation using actual numbers, a formal mathematical treatment with proofs, and cross-perspective connections. The primary focus is understanding why algorithms work, rather than only how to use them.
 
@@ -30,4 +30,6 @@ Lean proofs ensure correctness; visualizations provide geometric intuition. The 
 
 ![](assets/profile.png){width=180px fig-align="center" style="border-radius: 12px; box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);"}
 
-Hi, I am Ahmad Sardar. I am deeply interested in the science underlying Machine Learning, with particular focus on mathematical and theoretical foundations. I currently work as an MLE, contributing end-to-end across experimentation, modeling, and analysis.
+Hi, I am Ahmad Sardar. I am deeply interested in the science underlying Machine Learning, with particular focus on mathematical and theoretical foundations. I currently work as an MLE, contributing end-to-end across experimentation, modeling, and analysis. [<i class="bi bi-github"></i>](https://github.com/ahmad-sardar) [<i class="bi bi-linkedin"></i>](https://linkedin.com/in/asardar) [<i class="bi bi-envelope"></i>](mailto:ahmad@ahmadsardar.com)
+
+---
