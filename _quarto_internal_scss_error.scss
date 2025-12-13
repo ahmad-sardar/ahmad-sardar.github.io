@@ -1040,13 +1040,168 @@ $theme-name: null !default;
 // quarto-scss-analysis-annotation { "origin": "Defaults from user-defined SCSS" }
 
 
-// Modern dark theme with gradient accents
-$navbar-bg: #0f1419;
+// Heading font size customization
+$h1-font-size: 2rem !default;
+$h2-font-size: 1.65rem !default;
+$h3-font-size: 1.45rem !default;
+$h4-font-size: 1.25rem !default;
+$h5-font-size: 1.1rem !default;
+
+$kbd-padding-y: 0.4rem !default;
+$kbd-padding-x: 0.4rem !default;
+
+// Speed up the default transition for the navbar
+$transition-collapse: height 0.2s ease !default;
+
+// Adjust the base font size up a little
+$font-size-root: 17px !default;
+
+// Disable smooth scrolling
+$enable-smooth-scroll: false !default;
+
+// quarto-scss-analysis-annotation { "origin": "cosmo (builtin theme)" }
+
+$theme: "cosmo" !default;
+
+//
+// Color system
+//
+
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #373a3c !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$blue:    #2780e3 !default;
+$indigo:  #6610f2 !default;
+$purple:  #613d7c !default;
+$pink:    #e83e8c !default;
+$red:     #ff0039 !default;
+$orange:  #f0ad4e !default;
+$yellow:  #ff7518 !default;
+$green:   #3fb618 !default;
+$teal:    #20c997 !default;
+$cyan:    #9954bb !default;
+
+$primary:       $blue !default;
+$secondary:     $gray-800 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+$min-contrast-ratio:   2.6 !default;
+
+// Options
+
+$enable-rounded: false !default;
+
+// Body
+
+$body-color:    $gray-800 !default;
+
+// Fonts
+
+// stylelint-disable-next-line value-keyword-case
+$font-family-sans-serif:    "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headings-font-weight:      400 !default;
+
+// Navbar
+
+$navbar-dark-hover-color:       rgba($white, 1) !default;
+$navbar-light-hover-color:      rgba($black, .9) !default;
+
+// Alerts
+
+$alert-border-width:            0 !default;
+
+// Progress bars
+
+$progress-height:               .5rem !default;
+
+
+
+
+// ============================================
+// SKY/CYAN BLUE COLOR PALETTE
+// ============================================
+
+// Primary Blue Colors (Darker, muted tones for better contrast)
+$blue-deep: #0c1220;
+$blue-dark: #0f172a;
+$blue-base: #1e3a5f;      // Darker blue-gray
+$blue-medium: #3b5f8f;    // Muted medium blue
+$blue-accent: #5b8db8;    // Softer accent blue
+$blue-light: #7ba3c7;     // Muted light blue
+$blue-bright: #9bb8d4;    // Subtle bright blue
+$blue-highlight: #b8cfe0; // Soft highlight
+
+// Semantic Colors
+$primary: $blue-accent;
+$secondary: $blue-light;
+$accent: $blue-bright;
+$success: #10b981;  // Green for tip callouts
+$warning: #f59e0b;  // Amber for warning callouts
+$danger: #ef4444;   // Red for important callouts
+$caution: #f97316;  // Orange for caution callouts
+$info: $blue-highlight;
+#$definition: #6366f1;  // Muted indigo for definition callouts (sophisticated neutral)
+
+// Background Colors
+$navbar-bg: $blue-deep;
 $navbar-fg: #e5e7eb;
-$primary: #6366f1;
-$secondary: #8b5cf6;
-$accent: #ec4899;
-$border-color: #1e293b;
+$body-bg: $blue-dark;
+$content-bg: rgba(15, 23, 42, 0.6);
+
+// Text Colors
+$text-primary: #e5e7eb;
+$text-secondary: #cbd5e1;
+$text-muted: #94a3b8;
+$text-bright: #f1f5f9;
+
+// Border Colors (muted to match new palette)
+$border-color: rgba(91, 141, 184, 0.2);
+$border-light: rgba(91, 141, 184, 0.1);
+$border-medium: rgba(91, 141, 184, 0.3);
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 2.5rem;
+
+// Typography
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-family-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+$font-family-math: 'Computer Modern', 'Times New Roman', serif;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Border Radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+$shadow-blue: 0 4px 12px rgba(34, 211, 238, 0.2);
 
 
 // Heading font size customization
@@ -13102,231 +13257,582 @@ $web-font-path: "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0
 // quarto-scss-analysis-annotation { "origin": null }
 
 
-// Smooth transitions everywhere
+// ============================================
+// BASE STYLES
+// ============================================
+
+// Smooth scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Global transitions
 * {
-  transition: all 0.3s ease;
+  transition: color $transition-base, background-color $transition-base, 
+              border-color $transition-base, transform $transition-base,
+              box-shadow $transition-base;
 }
 
-// Modern navbar with glass-morphism effect
-.navbar {
-  background: rgba(15, 20, 25, 0.8) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
-  padding: 1rem 0;
+// Body defaults
+body {
+  background: linear-gradient(135deg, $blue-deep 0%, $blue-dark 100%);
+  background-attachment: fixed;
+  color: $text-primary;
+  font-family: $font-family-base;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
-.navbar-brand {
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  color: $text-bright;
   font-weight: 700;
-  font-size: 1.5rem;
-  background: linear-gradient(135deg, ##6366f1 0%, #6366f1 100%);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-top: 1px;
+  margin-bottom: $spacing-lg;
+  background: linear-gradient(135deg, $blue-medium 0%, $blue-accent 50%, $blue-light 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-// Links with underline animation
-.nav-link {
-  color: #e2e8f0 !important;
-  position: relative;
-  font-weight: 500;
-  font-size: 1rem;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background: linear-gradient(90deg, #6366f1, #8b5cf6);
-    transition: width 0.3s ease;
-  }
-  
-  &:hover::after {
-    width: 100%;
-  }
-}
-
-// Modern heading styles
-h1, h2, h3, h4, h5, h6 {
-  color: #e5e7eb;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-h1 {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-}
-
 h2 {
   font-size: 2rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 2px solid rgba(99, 102, 241, 0.2);
-  padding-bottom: 0.75rem;
+  margin-top: $spacing-2xl;
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-md;
+  border-bottom: 2px solid $border-medium;
+  color: $blue-accent;
+  
+  // Ensure links in h2 headings match the theme
+  a {
+    color: $blue-accent;
+    text-decoration: none;
+    
+    &:hover {
+      color: $blue-light;
+      
+      &::after {
+        display: none; // Remove underline on hover for h2 links
+      }
+    }
+  }
 }
 
 h3 {
   font-size: 1.5rem;
-  margin-top: 1.75rem;
-  margin-bottom: 0.75rem;
+  margin-top: $spacing-xl;
+  margin-bottom: $spacing-md;
+  color: $blue-light;
+  font-weight: 600;
+  letter-spacing: -0.3px;
 }
 
-// Modern paragraphs
+h4 {
+  font-size: 1.25rem;
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-sm;
+  color: $text-primary;
+  font-weight: 600;
+}
+
+h5, h6 {
+  font-size: 1.1rem;
+  margin-top: $spacing-md;
+  margin-bottom: $spacing-sm;
+  color: $text-secondary;
+}
+
+// Paragraphs
 p {
   line-height: 1.8;
-  color: #cbd5e1;
+  color: $text-secondary;
   font-size: 1.05rem;
+  margin-bottom: $spacing-md;
 }
 
+// Links
 a {
-  color: #6366f1;
+  color: $blue-light;
   text-decoration: none;
-  position: relative;
   font-weight: 500;
+  position: relative;
+  
+  // Don't apply underline animation to external links (they have their own ::after for icon)
+  &:not(.external)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(90deg, $blue-light, $blue-bright);
+    transition: width $transition-base;
+  }
   
   &:hover {
-    color: #8b5cf6;
+    color: $blue-bright;
+    
+    &:not(.external)::after {
+      width: 100%;
+    }
   }
 }
 
-// Code blocks with modern styling
-code {
-  background: rgba(15, 23, 42, 0.8) !important;
-  color: #e2e8f0;
-  padding: 2px 6px;
-  border-radius: 4px;
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  font-size: 0.95em;
+// Remove Quarto's external link icon (chain symbol) completely - multiple selectors for maximum coverage
+a.external::after,
+a[href^="http"]::after,
+a[href^="https"]::after,
+a[href^="mailto"]::after,
+a.external:hover::after,
+a[href^="http"]:hover::after,
+a[href^="https"]:hover::after,
+a[href^="mailto"]:hover::after {
+  display: none !important;
+  visibility: hidden !important;
+  content: '' !important;
+  background-image: none !important;
+  background-size: none !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
 }
 
+// Math rendering
+.math {
+  font-family: $font-family-math;
+  color: $text-bright;
+  padding: $spacing-xs 0;
+}
+
+// Lists
+ul, ol {
+  line-height: 2;
+  color: $text-secondary;
+  margin-left: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  padding-left: $spacing-lg;
+  
+  li {
+    margin-bottom: $spacing-md;
+    
+    &::marker {
+      color: $blue-accent;
+    }
+  }
+}
+
+// Blockquotes
+blockquote {
+  border-left: 4px solid $blue-accent;
+  padding-left: $spacing-xl;
+  padding-top: $spacing-sm;
+  padding-bottom: $spacing-sm;
+  color: $text-muted;
+  font-style: italic;
+  margin: $spacing-xl 0;
+  background: rgba(91, 141, 184, 0.05);
+  border-radius: 0 $radius-md $radius-md 0;
+  backdrop-filter: blur(5px);
+}
+
+// ============================================
+// CODE BLOCKS
+// ============================================
+
+// Inline code
+code {
+  background: rgba(10, 22, 37, 0.8) !important;
+  color: #e2e8f0;
+  padding: 3px 8px;
+  border-radius: $radius-sm;
+  border: 1px solid $border-light;
+  font-size: 0.95em;
+  font-family: $font-family-mono;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+}
+
+// Code blocks
 pre {
-  background: rgba(15, 23, 42, 0.9) !important;
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 8px;
-  padding: 1.25rem;
+  background: rgba(10, 22, 37, 0.95) !important;
+  border: 1px solid $border-medium;
+  border-radius: $radius-md;
+  padding: $spacing-xl;
   overflow-x: auto;
+  box-shadow: $shadow-md;
+  line-height: 1.5;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $blue-medium, $blue-accent, $blue-light);
+    border-radius: $radius-md $radius-md 0 0;
+  }
   
   code {
     background: transparent;
     color: #e2e8f0;
     border: none;
     padding: 0;
+    font-size: 0.9em;
   }
 }
 
-// Modern callout boxes
-.callout {
-  background: rgba(99, 102, 241, 0.1);
-  border-left: 4px solid #6366f1;
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin: 1.5rem 0;
-  backdrop-filter: blur(5px);
+// ============================================
+// NAVBAR
+// ============================================
+
+.navbar {
+  background: rgba(12, 18, 32, 0.85) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid $border-light;
+  padding: $spacing-md 0;
+  box-shadow: $shadow-sm;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, $blue-medium 0%, $blue-accent 50%, $blue-light 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-link {
+  color: $text-secondary !important;
+  position: relative;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: $spacing-sm $spacing-md !important;
+  padding-top: calc(#{$spacing-sm} + 20px) !important;
+  border-radius: $radius-sm;
+  transition: all $transition-base;
   
-  &.callout-note {
-    border-left-color: #6366f1;
-    background: rgba(99, 102, 241, 0.1);
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px;
+    left: $spacing-md;
+    right: $spacing-md;
+    background: linear-gradient(90deg, $blue-light, $blue-bright);
+    transition: width $transition-base;
+    border-radius: 2px;
   }
   
-  &.callout-tip {
-    border-left-color: #8b5cf6;
-    background: rgba(139, 92, 246, 0.1);
-  }
-  
-  &.callout-warning {
-    border-left-color: #ec4899;
-    background: rgba(236, 72, 153, 0.1);
-  }
-  
-  &.callout-important {
-    border-left-color: #f43f5e;
-    background: rgba(244, 63, 94, 0.1);
+  &:hover {
+    color: $blue-light !important;
+    background: rgba(91, 141, 184, 0.1);
+    
+    &::after {
+      width: calc(100% - #{$spacing-md * 2});
+    }
   }
 }
 
-// Modern lists
-ul, ol {
-  line-height: 2;
-  color: #cbd5e1;
-  
-  li {
-    margin-bottom: 0.75rem;
-  }
+// Move search icon up to align with other navbar icons
+.navbar #quarto-search {
+  margin-top: 1px;
 }
 
-// Modern table styling
+// ============================================
+// TABLES
+// ============================================
+
 table {
   border-collapse: collapse;
   width: 100%;
+  margin: $spacing-xl 0;
+  box-shadow: $shadow-md;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: rgba(15, 26, 46, 0.4);
+  backdrop-filter: blur(5px);
   
   thead {
-    background: rgba(99, 102, 241, 0.1);
-    border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+    background: linear-gradient(90deg, rgba(91, 141, 184, 0.3), rgba(123, 163, 199, 0.3));
+    border-bottom: 2px solid $border-medium;
   }
   
   th {
-    padding: 1rem;
+    padding: $spacing-lg;
     text-align: left;
     font-weight: 600;
-    color: #e2e8f0;
+    color: $text-bright;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.875rem;
   }
   
   td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid rgba(99, 102, 241, 0.1);
-    color: #cbd5e1;
+    padding: $spacing-md $spacing-lg;
+    border-bottom: 1px solid $border-light;
+    color: $text-secondary;
   }
   
-  tbody tr:hover {
-    background: rgba(99, 102, 241, 0.05);
+  tbody tr {
+    transition: background-color $transition-base;
+    
+    &:hover {
+      background: rgba(91, 141, 184, 0.15);
+    }
+    
+    &:last-child td {
+      border-bottom: none;
+    }
   }
 }
 
-// Modern blockquote
-blockquote {
-  border-left: 4px solid #6366f1;
-  padding-left: 1.5rem;
-  color: #a0aec0;
-  font-style: italic;
-  margin: 1.5rem 0;
+// ============================================
+// CALLOUT BOXES
+// ============================================
+
+.callout {
+  margin: $spacing-xl 0;
+  padding: $spacing-xl;
+  border-radius: $radius-md;
+  backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    transition: background $transition-base;
+  }
+  
+  // Note callout - Bright blue (#1F51FF)
+  &.callout-note {
+    border-left: 4px solid #850451;
+    background: rgba(132, 53, 111, 0.2);
+    box-shadow: 0 4px 12px rgba(192, 25, 153, 0.2);
+    
+    &::before {
+      background: linear-gradient(180deg, #f734f7, #4e203a);
+    }
+    // &.callout-style-default > .callout-header {
+    //   background-color: rgba(88, 3, 48, 0.2) !important; // or whatever color you want
+    //   }
+  }
+  
+  // Tip callout - Green (success)
+  &.callout-tip {
+    border-left: 4px solid $success;
+    background: rgba(16, 185, 129, 0.1);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    
+    &::before {
+      background: linear-gradient(180deg, $success, #34d399);
+    }
+  }
+  
+  // Warning callout - Amber/Yellow
+  &.callout-warning {
+    border-left: 4px solid $warning;
+    background: rgba(245, 158, 11, 0.1);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+    
+    &::before {
+      background: linear-gradient(180deg, $warning, #fbbf24);
+    }
+  }
+  
+  // Caution callout - Orange
+  &.callout-caution {
+    border-left: 4px solid $caution;
+    background: rgba(249, 115, 22, 0.1);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
+    
+    &::before {
+      background: linear-gradient(180deg, $caution, #fb923c);
+    }
+  }
+  
+  // Important callout - Red (danger)
+  &.callout-important {
+    border-left: 4px solid $danger;
+    background: rgba(239, 68, 68, 0.1);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+    
+    &::before {
+      background: linear-gradient(180deg, $danger, #f87171);
+    }
+  }
+  
 }
 
-// TOC styling
-.toc-item {
-  color: #cbd5e1 !important;
+// ============================================
+// IMAGES & FIGURES
+// ============================================
+
+img {
+  border-radius: $radius-md;
+  max-width: 100%;
+  height: auto;
+  box-shadow: $shadow-md;
+  transition: transform $transition-base, box-shadow $transition-base;
   
   &:hover {
-    color: #6366f1 !important;
+    transform: scale(1.02);
+    box-shadow: $shadow-lg;
   }
 }
 
-.toc-item.active {
-  color: #6366f1 !important;
-  font-weight: 600;
+figure {
+  margin: $spacing-xl 0;
+  text-align: center;
 }
 
-// Sidebar styling
+figcaption {
+  color: $text-muted;
+  font-size: 0.95rem;
+  margin-top: $spacing-md;
+  font-style: italic;
+}
+
+// ============================================
+// LAYOUT COMPONENTS
+// ============================================
+
+// Sidebar
 #quarto-sidebar {
-  background: rgba(15, 20, 25, 0.5);
-  border-right: 1px solid rgba(99, 102, 241, 0.1);
+  background: rgba(12, 18, 32, 0.6);
+  border-right: 1px solid $border-light;
+  backdrop-filter: blur(10px);
+}
+
+// Sidebar TOC - Override green highlighting to match blue theme
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  border-left-color: $blue-accent !important;
+  color: $blue-accent !important;
+}
+
+.sidebar nav[role="doc-toc"] ul > li > a:hover,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a:hover {
+  color: $blue-light !important;
 }
 
 // Main content area
 #quarto-content {
-  padding: 2rem;
+  padding: $spacing-xl;
+  padding-top: $spacing-md;
+  
+  // Move first element (which contains title) up by reducing its padding-top
+  > *:first-child {
+    padding-top: calc(1rem - 10px) !important;
+  }
 }
 
-// Modern footer
+main {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: $radius-lg;
+  padding: $spacing-2xl;
+  margin: $spacing-xl auto;
+  max-width: 900px;
+  box-shadow: $shadow-lg;
+  border: 1px solid $border-light;
+}
+
+// TOC styling
+.toc {
+  background: rgba(91, 141, 184, 0.05);
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  border: 1px solid $border-light;
+  backdrop-filter: blur(5px);
+}
+
+.toc-item {
+  color: $text-secondary !important;
+  transition: all $transition-base;
+  padding: $spacing-sm 0;
+  
+  &:hover {
+    color: $blue-light !important;
+    padding-left: $spacing-sm;
+  }
+}
+
+.toc-item.active {
+  color: $blue-light !important;
+  font-weight: 600;
+  border-left: 3px solid $blue-accent;
+  padding-left: $spacing-md;
+}
+
+// Footer
 .page-footer {
-  border-top: 1px solid rgba(99, 102, 241, 0.1);
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  background: rgba(15, 20, 25, 0.5);
+  border-top: 1px solid $border-light;
+  padding-top: $spacing-xl;
+  padding-bottom: $spacing-xl;
+  background: rgba(12, 18, 32, 0.5);
+  backdrop-filter: blur(5px);
+  margin-top: $spacing-2xl;
 }
 
-// Responsive typography
+// ============================================
+// SCROLLBAR STYLING
+// ============================================
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(91, 141, 184, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(91, 141, 184, 0.3);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  
+  &:hover {
+    background: rgba(91, 141, 184, 0.5);
+    background-clip: padding-box;
+  }
+}
+
+// ============================================
+// RESPONSIVE DESIGN
+// ============================================
+
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
@@ -13334,8 +13840,154 @@ blockquote {
   
   h2 {
     font-size: 1.5rem;
+    margin-top: $spacing-xl;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 2px solid $border-medium;
+    color: $blue-accent;
+
+    &:not(:has(a)) {
+      cursor: default;
+    }
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
+  
+  main {
+    padding: $spacing-lg;
+    border-radius: $radius-md;
+    margin: $spacing-md;
+  }
+  
+  code {
+    font-size: 0.9em;
+  }
+  
+  table {
+    font-size: 0.95rem;
+    display: block;
+    overflow-x: auto;
+  }
+  
+  th, td {
+    padding: $spacing-sm $spacing-md;
+  }
+  
+  .callout {
+    padding: $spacing-md;
   }
 }
+
+// ============================================
+// PRINT STYLES
+// ============================================
+
+@media print {
+  body {
+    background: white;
+    color: #000;
+  }
+  
+  main {
+    background: white;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  a {
+    color: $blue-accent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color $transition-base;
+    
+    &:hover {
+      color: $blue-light;
+      text-decoration: underline;
+      
+      &::after {
+        display: none; // Remove underline on hover for h2 links
+      }
+    }
+  }
+
+  
+  .navbar,
+  #quarto-sidebar,
+  .page-footer {
+    display: none;
+  }
+  
+  pre {
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd;
+    
+    code {
+      color: #000;
+    }
+  }
+  
+  table {
+    background: white;
+    
+    thead {
+      background: #f0f0f0;
+    }
+  }
+}
+
+// Final override to remove ALL external link icons - must be at the end to override everything
+a.external::after,
+a[href^="http"]::after,
+a[href^="https"]::after,
+a[href^="mailto"]::after {
+  all: unset !important;
+  display: none !important;
+  content: none !important;
+  background-image: none !important;
+}
+
+
+
+
+
+// Variables
+
+$web-font-path: "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" !default;
+@if $web-font-path {
+  @import url($web-font-path);
+}
+
+// Typography
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+// Indicators
+
+.badge {
+  &.bg-light {
+    color: $dark;
+  }
+}
+
+// Progress bars
+
+.progress {
+  @include box-shadow(none);
+
+  .progress-bar {
+    font-size: 8px;
+    line-height: 8px;
+  }
+}
+
+
+// quarto-scss-analysis-annotation { "origin": null }
 
 
 // quarto-scss-analysis-annotation { "origin": null }

@@ -2,7 +2,7 @@
 title: "Mathematics"
 ---
 
-## [1- Mathematical Reasoning](Mathematical_Reasoning_Corrected.qmd) {.unnumbered}
+## [1- Mathematical Reasoning](Mathematical_Reasoning_enhanced.qmd) {.unnumbered}
 
 ## [2- Euclidean Geometry](euclidean_geometry_enhanced.qmd) {.unnumbered}
 

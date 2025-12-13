@@ -23,7 +23,6 @@ $warning: #f59e0b;  // Amber for warning callouts
 $danger: #ef4444;   // Red for important callouts
 $caution: #f97316;  // Orange for caution callouts
 $info: $blue-highlight;
-$definition: #6366f1;  // Muted indigo for definition callouts (sophisticated neutral)
 
 // Background Colors
 $navbar-bg: $blue-deep;
@@ -449,14 +448,14 @@ table {
     transition: background $transition-base;
   }
   
-  // Note callout - Deep navy blue (sophisticated and stands out)
+  // Note callout - Blue (aligned with default theme)
   &.callout-note {
-    border-left: 4px solid #1e3a8a;
-    background: rgba(30, 58, 138, 0.15);
-    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+    border-left: 4px solid $blue-accent;
+    background: rgba(27, 130, 220, 0.575);
+    box-shadow: 0 4px 12px rgba(5, 9, 13, 0.15);
     
     &::before {
-      background: linear-gradient(180deg, #1e3a8a, #2563eb);
+      background: linear-gradient(180deg, $blue-accent, $blue-light);
     }
   }
   
@@ -504,16 +503,6 @@ table {
     }
   }
   
-  // Definition callout - Muted indigo (sophisticated neutral)
-  &.callout-definition {
-    border-left: 4px solid $definition;
-    background: rgba(99, 102, 241, 0.3);
-    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
-    
-    &::before {
-      background: linear-gradient(180deg, $definition, #818cf8);
-    }
-  }
 }
 
 // ============================================
